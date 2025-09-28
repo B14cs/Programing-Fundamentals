@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Variables</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.5em;
+            color: #666;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 6px solid #667eea;
+            font-size: 1.3em;
+            line-height: 1.8;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .interactive-section {
+            margin: 40px 0;
+            padding: 35px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 3px dashed #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-section:hover {
+            border-color: #764ba2;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .interactive-section h2 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .interactive-section h2::before {
+            content: "🎮";
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        .variable-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 25px 0;
+        }
+
+        @media (max-width: 900px) {
+            .variable-demo {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .box-container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .box-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .variable-box {
+            border: 4px solid #667eea;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 15px 0;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4em;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            box-shadow: 5px 5px 15px #d1d1d1, -5px -5px 15px #ffffff;
+        }
+
+        .var-name {
+            font-weight: bold;
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .var-value {
+            color: #667eea;
+            font-size: 2em;
+            font-weight: bold;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border: 3px solid #667eea;
+            border-radius: 8px;
+            width: 100%;
+            margin: 12px 0;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 25px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            flex: 1;
+            min-width: 120px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin: 20px 0;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+            overflow-x: auto;
+        }
+
+        .keyword {
+            color: #66d9ef;
+        }
+
+        .string {
+            color: #e6db74;
+        }
+
+        .number {
+            color: #ae81ff;
+        }
+
+        .comment {
+            color: #75715e;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .type-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-top: 5px solid #667eea;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .type-card h3 {
+            color: #667eea;
+            font-size: 1.6em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .type-card .example {
+            background: #f5f7fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .result-box {
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.3em;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .compact-button-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .emoji {
+            font-size: 2em;
+            margin-right: 10px;
+        }
+
+        .section-title {
+            font-size: 2.8em;
+            color: #764ba2;
+            margin: 40px 0 20px;
+            text-align: center;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+
+        .tip-box {
+            background: #fff9c4;
+            border-left: 5px solid #ffd600;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 1.1em;
+        }
+
+        .visual-explanation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 30px;
+        }
+
+        .box-visual {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .box-label {
+            position: absolute;
+            top: -30px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .box-content {
+            font-size: 1.5em;
+        }
+
+        .arrow {
+            font-size: 3em;
+            color: #667eea;
+        }
+
+        /* Enhanced Modal for data type examples */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+            border: 5px solid #667eea;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2.5em;
+            cursor: pointer;
+            color: #667eea;
+            transition: color 0.3s;
+            background: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .close-modal:hover {
+            color: #764ba2;
+            transform: scale(1.1);
+        }
+
+        .modal-title {
+            color: #667eea;
+            font-size: 2.8em;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 3px solid #764ba2;
+            padding-bottom: 15px;
+        }
+
+        .modal-code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 30px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin: 20px 0;
+            box-shadow: inset 0 4px 15px rgba(0,0,0,0.5);
+            overflow-x: auto;
+        }
+
+        .type-description {
+            font-size: 1.4em;
+            line-height: 1.7;
+            margin: 20px 0;
+            color: #444;
+        }
+
+        .type-icon {
+            font-size: 3em;
+            margin-right: 20px;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .interactive-section {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .visual-explanation {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .compact-button-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 25px;
+            }
+            
+            .modal-title {
+                font-size: 2.2em;
+            }
+            
+            .modal-code {
+                font-size: 1.2em;
+                padding: 20px;
+            }
+            
+            .type-description {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 Understanding Variables</h1>
+        <p class="subtitle">Think of variables as labeled boxes that store information</p>
+
+        <div class="concept-box">
+            <strong>What is a Variable?</strong><br>
+            A variable is a named container that stores data in your program. Just like a labeled box can hold different items, a variable can hold different values. You give it a name so you can find and use it later!
+        </div>
+
+        <div class="visual-explanation">
+            <div class="box-visual">
+                <div class="box-label">Variable Name</div>
+                <div class="box-content">age</div>
+            </div>
+            <div class="arrow">→</div>
+            <div class="box-visual">
+                <div class="box-label">Variable Value</div>
+                <div class="box-content">25</div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo 1: Basic Variable Assignment -->
+        <h2 id="basic" class="section-title">Basic Variable Assignment</h2>
+        <div class="interactive-section">
+            <h2>Try It: Create Your First Variable</h2>
+            <div class="tip-box">
+                💡 <strong>Tip:</strong> Variable names should be descriptive (e.g., "studentAge" instead of "x")
+            </div>
+            <div class="variable-demo">
+                <div class="box-container">
+                    <h3 style="color: #764ba2; margin-bottom: 20px;">Variable Name</h3>
+                    <input type="text" id="varName" placeholder="Enter variable name (e.g., age, name)" value="studentAge">
+                    <h3 style="color: #764ba2; margin: 20px 0;">Variable Value</h3>
+                    <input type="text" id="varValue" placeholder="Enter value (e.g., 25, 'John')" value="20">
+                    <div class="button-group">
+                        <button onclick="createVariable()">Create Variable</button>
+                        <button onclick="resetVariable()" style="background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);">Reset</button>
+                    </div>
+                </div>
+                <div class="box-container">
+                    <h3 style="color: #764ba2; margin-bottom: 20px;">Variable Storage</h3>
+                    <div class="variable-box" id="variableDisplay">
+                        <div class="var-name">studentAge</div>
+                        <div class="var-value">20</div>
+                    </div>
+                    <div class="code-block" id="codeDisplay">
+                        <span class="keyword">let</span> studentAge = <span class="number">20</span>;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variable Types -->
+        <h2 id="types" class="section-title">Data Types in Variables</h2>
+        <div class="interactive-section">
+            <h2>Different Kinds of Data Variables Can Hold</h2>
+            <div class="tip-box">
+                💡 <strong>Tip:</strong> JavaScript automatically determines the data type based on the value you assign
+            </div>
+            <div class="types-grid">
+                <div class="type-card" onclick="showTypeExample('number')">
+                    <h3>🔢 Numbers</h3>
+                    <p>Store numerical values for calculations (integers and decimals)</p>
+                    <div class="example">
+                        let age = 21;<br>
+                        let price = 99.99;<br>
+                        let negative = -42;
+                    </div>
+                </div>
+                <div class="type-card" onclick="showTypeExample('string')">
+                    <h3>📝 Strings</h3>
+                    <p>Store text and characters in quotes</p>
+                    <div class="example">
+                        let name = "Alice";<br>
+                        let greeting = 'Hello!';<br>
+                        let message = `Welcome`;
+                    </div>
+                </div>
+                <div class="type-card" onclick="showTypeExample('boolean')">
+                    <h3>✅ Booleans</h3>
+                    <p>Store true or false values for logic</p>
+                    <div class="example">
+                        let isStudent = true;<br>
+                        let isPassed = false;<br>
+                        let isValid = true;
+                    </div>
+                </div>
+                <div class="type-card" onclick="showTypeExample('array')">
+                    <h3>📊 Arrays</h3>
+                    <p>Store multiple values in order</p>
+                    <div class="example">
+                        let fruits = ["🍎","🍌","🍊"];<br>
+                        let nums = [1, 2, 3, 4];<br>
+                        fruits[0] // "🍎"
+                    </div>
+                </div>
+                <div class="type-card" onclick="showTypeExample('object')">
+                    <h3>📦 Objects</h3>
+                    <p>Store related data as key-value pairs</p>
+                    <div class="example">
+                        let student = {<br>
+                        &nbsp;&nbsp;name: "Bob",<br>
+                        &nbsp;&nbsp;age: 20<br>
+                        };
+                    </div>
+                </div>
+                <div class="type-card" onclick="showTypeExample('null')">
+                    <h3>🔳 Null & Undefined</h3>
+                    <p>Special values representing absence of value</p>
+                    <div class="example">
+                        let data = null;<br>
+                        let x; // undefined<br>
+                        // No value assigned yet
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo 2: Variable Operations -->
+        <h2 id="operations" class="section-title">Variable Operations</h2>
+        <div class="interactive-section">
+            <h2>Try It: Arithmetic with Variables</h2>
+            <div class="variable-demo">
+                <div class="box-container">
+                    <h3 style="color: #764ba2;">Input Numbers</h3>
+                    <input type="number" id="num1" placeholder="First number" value="10">
+                    <input type="number" id="num2" placeholder="Second number" value="5">
+                    <div class="compact-button-group">
+                        <button onclick="calculate('add')">+ Add</button>
+                        <button onclick="calculate('subtract')">- Subtract</button>
+                        <button onclick="calculate('multiply')">× Multiply</button>
+                        <button onclick="calculate('divide')">÷ Divide</button>
+                    </div>
+                </div>
+                <div class="box-container">
+                    <h3 style="color: #764ba2;">Result</h3>
+                    <div class="variable-box">
+                        <div class="var-name">result</div>
+                        <div class="var-value" id="calcResult">15.00</div>
+                    </div>
+                    <div class="code-block" id="calcCode">
+                        <span class="keyword">let</span> num1 = <span class="number">10</span>;<br>
+                        <span class="keyword">let</span> num2 = <span class="number">5</span>;<br>
+                        <span class="keyword">let</span> result = num1 + num2;<br>
+                        <span class="comment">// result = 15.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo 3: String Concatenation -->
+        <div class="interactive-section">
+            <h2>Try It: Combining Strings</h2>
+            <div class="variable-demo">
+                <div class="box-container">
+                    <h3 style="color: #764ba2;">Build a Greeting</h3>
+                    <input type="text" id="firstName" placeholder="First name" value="John">
+                    <input type="text" id="lastName" placeholder="Last name" value="Doe">
+                    <button onclick="concatenateStrings()" style="width: 100%;">Combine Names</button>
+                </div>
+                <div class="box-container">
+                    <h3 style="color: #764ba2;">Full Name</h3>
+                    <div class="variable-box">
+                        <div class="var-name">fullName</div>
+                        <div class="var-value" id="fullName" style="font-size: 1.5em;">John Doe</div>
+                    </div>
+                    <div class="code-block" id="stringCode">
+                        <span class="keyword">let</span> firstName = <span class="string">"John"</span>;<br>
+                        <span class="keyword">let</span> lastName = <span class="string">"Doe"</span>;<br>
+                        <span class="keyword">let</span> fullName = firstName + <span class="string">" "</span> + lastName;<br>
+                        <span class="comment">// fullName = "John Doe"</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo 4: Arrays -->
+        <h2 id="arrays" class="section-title">Working with Arrays</h2>
+        <div class="interactive-section">
+            <h2>Try It: Working with Arrays</h2>
+            <div class="tip-box">
+                💡 <strong>Tip:</strong> Arrays are like lists that can hold multiple values under one variable name
+            </div>
+            <div class="variable-demo">
+                <div class="box-container">
+                    <h3 style="color: #764ba2;">Add Items to Your List</h3>
+                    <input type="text" id="arrayItem" placeholder="Enter an item (e.g., Apple)" value="Apple">
+                    <div class="button-group" style="flex-direction: column;">
+                        <button onclick="addToArray()" style="width: 100%;">Add Item</button>
+                        <button onclick="removeFromArray()" style="width: 100%; background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);">Remove Last Item</button>
+                        <button onclick="clearArray()" style="width: 100%; background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);">Clear List</button>
+                    </div>
+                </div>
+                <div class="box-container">
+                    <h3 style="color: #764ba2;">Array Contents</h3>
+                    <div class="variable-box">
+                        <div class="var-name">myArray</div>
+                        <div class="var-value" id="arrayDisplay" style="font-size: 1.3em;">[ "Apple" ]</div>
+                    </div>
+                    <div class="code-block" id="arrayCode">
+                        <span class="keyword">let</span> myArray = [<span class="string">"Apple"</span>];<br>
+                        myArray.push(<span class="string">"item"</span>);<br>
+                        <span class="comment">// Length: 1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo 5: Objects -->
+        <h2 id="objects" class="section-title">Creating Objects</h2>
+        <div class="interactive-section">
+            <h2>Try It: Creating Objects</h2>
+            <div class="tip-box">
+                💡 <strong>Tip:</strong> Objects group related data together using key-value pairs
+            </div>
+            <div class="variable-demo">
+                <div class="box-container">
+                    <h3 style="color: #764ba2;">Create a Student Object</h3>
+                    <input type="text" id="studentName" placeholder="Student name" value="Alice">
+                    <input type="number" id="studentAge" placeholder="Age" value="20">
+                    <input type="text" id="studentMajor" placeholder="Major" value="Computer Science">
+                    <button onclick="createObject()" style="width: 100%;">Create Object</button>
+                </div>
+                <div class="box-container">
+                    <h3 style="color: #764ba2;">Object Structure</h3>
+                    <div class="variable-box" style="align-items: flex-start;">
+                        <div class="var-name" style="align-self: center;">student</div>
+                        <div id="objectDisplay" style="font-size: 1.1em; width: 100%; text-align: left; color: #667eea;">
+                            {<br>
+                            &nbsp;&nbsp;name: "Alice",<br>
+                            &nbsp;&nbsp;age: 20,<br>
+                            &nbsp;&nbsp;major: "Computer Science"<br>
+                            }
+                        </div>
+                    </div>
+                    <div class="code-block" id="objectCode">
+                        <span class="keyword">let</span> student = {<br>
+                        &nbsp;&nbsp;name: <span class="string">"Alice"</span>,<br>
+                        &nbsp;&nbsp;age: <span class="number">20</span>,<br>
+                        &nbsp;&nbsp;major: <span class="string">"Computer Science"</span><br>
+                        };<br>
+                        <span class="comment">// Access: student.name = "Alice"</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-box">
+            <strong>💡 Key Takeaways:</strong><br>
+            • Variables are named storage containers for data<br>
+            • Always give variables meaningful names (e.g., <code>studentAge</code> not <code>x</code>)<br>
+            • Variables can change their values during program execution<br>
+            • Different types of data require different handling (numbers, strings, booleans)<br>
+            • Use variables to make your code reusable and maintainable
+        </div>
+    </div>
+
+    <!-- Enhanced Modal for data type examples -->
+    <div id="typeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeTypeModal()">&times;</span>
+            <div class="modal-header">
+                <span class="type-icon" id="modalTypeIcon">🔢</span>
+                <h2 class="modal-title" id="modalTypeTitle">Data Type</h2>
+            </div>
+            <div class="type-description" id="modalTypeDescription"></div>
+            <div class="modal-code" id="modalTypeCode"></div>
+            <div class="type-description" id="modalTypeDetails"></div>
+        </div>
+    </div>
+
+    <script>
+        // Basic variable creation
+        function createVariable() {
+            const name = document.getElementById('varName').value || 'myVariable';
+            const value = document.getElementById('varValue').value || '42';
+            
+            document.getElementById('variableDisplay').innerHTML = `
+                <div class="var-name">${name}</div>
+                <div class="var-value">${value}</div>
+            `;
+            
+            const isString = isNaN(value) && value !== 'true' && value !== 'false';
+            const displayValue = isString ? `"${value}"` : value;
+            const valueClass = isString ? 'string' : 'number';
+            
+            document.getElementById('codeDisplay').innerHTML = `
+                <span class="keyword">let</span> ${name} = <span class="${valueClass}">${displayValue}</span>;
+            `;
+        }
+        
+        function resetVariable() {
+            document.getElementById('varName').value = 'studentAge';
+            document.getElementById('varValue').value = '20';
+            createVariable();
+        }
+
+        // Data type examples modal
+        function showTypeExample(type) {
+            const modal = document.getElementById('typeModal');
+            const title = document.getElementById('modalTypeTitle');
+            const description = document.getElementById('modalTypeDescription');
+            const code = document.getElementById('modalTypeCode');
+            const details = document.getElementById('modalTypeDetails');
+            const icon = document.getElementById('modalTypeIcon');
+            
+            const typeData = {
+                number: {
+                    icon: '🔢',
+                    title: 'Numbers',
+                    description: 'Store numerical values for calculations (integers and decimals)',
+                    code: 'let age = 25;<br>let price = 19.99;<br>let temperature = -5;<br>let bigNumber = 1e6; // 1,000,000',
+                    details: 'Numbers can be integers (whole numbers) or floating-point numbers (decimals). JavaScript uses 64-bit floating-point numbers for all numeric values.'
+                },
+                string: {
+                    icon: '📝',
+                    title: 'Strings',
+                    description: 'Store text and characters in quotes',
+                    code: 'let name = "John";<br>let message = \'Hello!\';<br>let template = `My name is ${name}`;<br>let escape = "Line 1\\nLine 2";',
+                    details: 'Strings can be created using single quotes (\'), double quotes (") or backticks (`). Backticks allow template literals with embedded expressions.'
+                },
+                boolean: {
+                    icon: '✅',
+                    title: 'Booleans',
+                    description: 'Store true or false values for logic',
+                    code: 'let isStudent = true;<br>let hasPassed = false;<br>let isValid = (age > 18);<br>let isEqual = (x === y);',
+                    details: 'Booleans are fundamental for control flow in programming. They are often the result of comparison operations.'
+                },
+                array: {
+                    icon: '📊',
+                    title: 'Arrays',
+                    description: 'Store multiple values in order',
+                    code: 'let fruits = ["apple", "banana", "orange"];<br>let numbers = [1, 2, 3, 4, 5];<br>let mixed = [1, "text", true];<br>console.log(fruits[0]); // "apple"',
+                    details: 'Arrays are zero-indexed (first element is at index 0). They can hold values of different types and have a dynamic length.'
+                },
+                object: {
+                    icon: '📦',
+                    title: 'Objects',
+                    description: 'Store related data as key-value pairs',
+                    code: 'let student = {<br>&nbsp;&nbsp;name: "Alice",<br>&nbsp;&nbsp;age: 20,<br>&nbsp;&nbsp;major: "Computer Science"<br>};<br>console.log(student.name); // "Alice"',
+                    details: 'Objects group related data together. Properties can be accessed using dot notation (object.property) or bracket notation (object["property"]).'
+                },
+                null: {
+                    icon: '🔳',
+                    title: 'Null & Undefined',
+                    description: 'Special values representing absence of value',
+                    code: 'let emptyValue = null;<br>let user = null; // Intentionally empty<br>let x; // undefined (declared but not assigned)<br>let obj = {};<br>console.log(obj.property); // undefined',
+                    details: 'null is an assigned value that means "no value". undefined means a variable has been declared but has not been assigned a value.'
+                }
+            };
+            
+            const data = typeData[type];
+            icon.textContent = data.icon;
+            title.textContent = data.title;
+            description.textContent = data.description;
+            code.innerHTML = data.code;
+            details.textContent = data.details;
+            
+            modal.style.display = 'flex';
+        }
+        
+        function closeTypeModal() {
+            document.getElementById('typeModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside the content
+        window.onclick = function(event) {
+            const modal = document.getElementById('typeModal');
+            if (event.target === modal) {
+                closeTypeModal();
+            }
+        }
+
+        // Arithmetic operations
+        function calculate(operation) {
+            const num1 = parseFloat(document.getElementById('num1').value) || 0;
+            const num2 = parseFloat(document.getElementById('num2').value) || 0;
+            let result;
+            let operator;
+
+            switch(operation) {
+                case 'add':
+                    result = num1 + num2;
+                    operator = '+';
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    operator = '-';
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    operator = '*';
+                    break;
+                case 'divide':
+                    result = num2 !== 0 ? num1 / num2 : 'Error: Division by zero';
+                    operator = '/';
+                    break;
+            }
+
+            document.getElementById('calcResult').textContent = typeof result === 'number' ? result.toFixed(2) : result;
+            
+            document.getElementById('calcCode').innerHTML = `
+                <span class="keyword">let</span> num1 = <span class="number">${num1}</span>;<br>
+                <span class="keyword">let</span> num2 = <span class="number">${num2}</span>;<br>
+                <span class="keyword">let</span> result = num1 ${operator} num2;<br>
+                <span class="comment">// result = ${typeof result === 'number' ? result.toFixed(2) : result}</span>
+            `;
+        }
+
+        // String concatenation
+        function concatenateStrings() {
+            const firstName = document.getElementById('firstName').value || 'First';
+            const lastName = document.getElementById('lastName').value || 'Last';
+            const fullName = firstName + ' ' + lastName;
+            
+            document.getElementById('fullName').textContent = fullName;
+            
+            document.getElementById('stringCode').innerHTML = `
+                <span class="keyword">let</span> firstName = <span class="string">"${firstName}"</span>;<br>
+                <span class="keyword">let</span> lastName = <span class="string">"${lastName}"</span>;<br>
+                <span class="keyword">let</span> fullName = firstName + <span class="string">" "</span> + lastName;<br>
+                <span class="comment">// fullName = "${fullName}"</span>
+            `;
+        }
+
+        // Array demonstration
+        let demoArray = ["Apple"];
+
+        function addToArray() {
+            const item = document.getElementById('arrayItem').value || 'Item';
+            if (item.trim() !== '') {
+                demoArray.push(item);
+                updateArrayDisplay();
+                document.getElementById('arrayItem').value = '';
+            }
+        }
+
+        function removeFromArray() {
+            if (demoArray.length > 0) {
+                demoArray.pop();
+                updateArrayDisplay();
+            }
+        }
+
+        function clearArray() {
+            demoArray = [];
+            updateArrayDisplay();
+        }
+
+        function updateArrayDisplay() {
+            const displayText = demoArray.length > 0 
+                ? '[ "' + demoArray.join('", "') + '" ]' 
+                : '[ ]';
+            document.getElementById('arrayDisplay').textContent = displayText;
+            
+            const codeItems = demoArray.map(item => `<span class="string">"${item}"</span>`).join(', ');
+            document.getElementById('arrayCode').innerHTML = `
+                <span class="keyword">let</span> myArray = [${codeItems}];<br>
+                myArray.push(<span class="string">"item"</span>);<br>
+                <span class="comment">// Length: ${demoArray.length}</span>
+            `;
+        }
+
+        // Object demonstration
+        function createObject() {
+            const name = document.getElementById('studentName').value || 'Student';
+            const age = document.getElementById('studentAge').value || '18';
+            const major = document.getElementById('studentMajor').value || 'Undeclared';
+            
+            document.getElementById('objectDisplay').innerHTML = `
+                {<br>
+                &nbsp;&nbsp;name: "${name}",<br>
+                &nbsp;&nbsp;age: ${age},<br>
+                &nbsp;&nbsp;major: "${major}"<br>
+                }
+            `;
+            
+            document.getElementById('objectCode').innerHTML = `
+                <span class="keyword">let</span> student = {<br>
+                &nbsp;&nbsp;name: <span class="string">"${name}"</span>,<br>
+                &nbsp;&nbsp;age: <span class="number">${age}</span>,<br>
+                &nbsp;&nbsp;major: <span class="string">"${major}"</span><br>
+                };<br>
+                <span class="comment">// Access: student.name = "${name}"</span>
+            `;
+        }
+
+        // Initialize with default values
+        window.onload = function() {
+            createVariable();
+            calculate('add');
+            concatenateStrings();
+            updateArrayDisplay();
+            createObject();
+        };
+    </script>
+</body>
+</html>

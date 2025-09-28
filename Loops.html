@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops - Interactive Tutorial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #f0f0f0;
+            font-size: 1.8em;
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: "🔍";
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 2em;
+            margin: 30px 0 15px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        h3::before {
+            content: "▶️";
+            margin-right: 10px;
+            font-size: 0.8em;
+        }
+
+        p {
+            font-size: 1.4em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.3em;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-left: 5px solid #667eea;
+            position: relative;
+        }
+
+        .code-block::before {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .keyword {
+            color: #ff79c6;
+        }
+
+        .number {
+            color: #bd93f9;
+        }
+
+        .string {
+            color: #f1fa8c;
+        }
+
+        .comment {
+            color: #6272a4;
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px dashed #667eea;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        input[type="number"] {
+            padding: 12px;
+            font-size: 1.3em;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            width: 120px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #764ba2;
+            outline: none;
+        }
+
+        label {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .output {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            min-height: 100px;
+            font-size: 1.3em;
+            border: 3px solid #667eea;
+            margin-top: 20px;
+        }
+
+        .visual-loop {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px 0;
+            justify-content: center;
+        }
+
+        .loop-item {
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+            min-width: 80px;
+            text-align: center;
+            animation: fadeIn 0.5s;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .loop-item:hover {
+            transform: scale(1.1);
+            background: #764ba2;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .loop-type {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #667eea;
+            transition: transform 0.3s;
+        }
+
+        .loop-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .loop-type h4 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .loop-type h4::before {
+            content: "🔄";
+            margin-right: 10px;
+        }
+
+        .highlight {
+            background: #fffbcc;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .info-box::before {
+            content: "💡";
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #2196f3;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+
+        .info-box strong {
+            color: #1976d2;
+            font-size: 1.3em;
+        }
+
+        .pattern-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .pattern-cell {
+            aspect-ratio: 1;
+            background: #667eea;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .pattern-cell:hover {
+            transform: scale(1.1);
+            background: #764ba2;
+        }
+
+        .tab-container {
+            margin: 30px 0;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .tab-button {
+            padding: 15px 30px;
+            background: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3em;
+            transition: background 0.3s;
+            border-radius: 10px 10px 0 0;
+            margin-right: 5px;
+        }
+
+        .tab-button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .quiz-container {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #667eea;
+        }
+
+        .quiz-question {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            padding: 15px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, border-color 0.3s;
+            font-size: 1.2em;
+        }
+
+        .quiz-option:hover {
+            background: #f0f0f0;
+        }
+
+        .quiz-option.selected {
+            background: #e3f2fd;
+            border-color: #2196f3;
+        }
+
+        .quiz-feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            color: #2e7d32;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            color: #c62828;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .subtitle {
+                font-size: 1.4em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Loops</h1>
+        <p class="subtitle">Repeating Actions Efficiently</p>
+
+        <div class="section" id="what-are-loops">
+            <h2>What are Loops?</h2>
+            <p>A <span class="highlight">loop</span> is a programming structure that repeats a block of code multiple times. Instead of writing the same code over and over, we use loops to execute statements repeatedly.</p>
+            
+            <div class="info-box">
+                <strong>Key Concept:</strong> Loops save time, reduce code duplication, and make programs more efficient!
+            </div>
+
+            <h3>Why Do We Need Loops?</h3>
+            <p>Imagine you want to print numbers from 1 to 100. Without loops:</p>
+            <div class="code-block">
+<span class="keyword">print</span>(<span class="number">1</span>)
+<span class="keyword">print</span>(<span class="number">2</span>)
+<span class="keyword">print</span>(<span class="number">3</span>)
+<span class="comment">// ... 97 more lines!</span>
+<span class="keyword">print</span>(<span class="number">100</span>)
+            </div>
+
+            <p>With a loop:</p>
+            <div class="code-block">
+<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">100</span>; i++) {
+    <span class="keyword">print</span>(i)
+}
+            </div>
+        </div>
+
+        <div class="section" id="types-of-loops">
+            <h2>Types of Loops</h2>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="openTab(event, 'for-tab')">For Loop</button>
+                    <button class="tab-button" onclick="openTab(event, 'while-tab')">While Loop</button>
+                    <button class="tab-button" onclick="openTab(event, 'do-while-tab')">Do-While Loop</button>
+                </div>
+                
+                <div id="for-tab" class="tab-content active">
+                    <h4>For Loop</h4>
+                    <p><strong>Use when:</strong> You know how many times to repeat</p>
+                    <div class="code-block">
+<span class="keyword">for</span> (i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
+    <span class="keyword">print</span>(i)
+}
+                    </div>
+                    <p><strong>Output:</strong> 0, 1, 2, 3, 4</p>
+                    
+                    <div class="interactive-demo">
+                        <h3>Interactive For Loop Demo</h3>
+                        <div class="controls">
+                            <label for="forStart">Start:</label>
+                            <input type="number" id="forStart" value="1">
+                            <label for="forEnd">End:</label>
+                            <input type="number" id="forEnd" value="10">
+                            <label for="forStep">Step:</label>
+                            <input type="number" id="forStep" value="1">
+                            <button onclick="runForLoop()">▶️ Run For Loop</button>
+                            <button onclick="clearForOutput()">🗑️ Clear</button>
+                        </div>
+                        <div id="forOutput" class="output"></div>
+                        <div id="forVisual" class="visual-loop"></div>
+                    </div>
+                </div>
+                
+                <div id="while-tab" class="tab-content">
+                    <h4>While Loop</h4>
+                    <p><strong>Use when:</strong> You repeat based on a condition</p>
+                    <div class="code-block">
+<span class="keyword">while</span> (count < <span class="number">5</span>) {
+    <span class="keyword">print</span>(count)
+    count++
+}
+                    </div>
+                    <p><strong>Output:</strong> 0, 1, 2, 3, 4</p>
+                    
+                    <div class="interactive-demo">
+                        <h3>Interactive While Loop Demo</h3>
+                        <div class="controls">
+                            <label for="whileStart">Start Value:</label>
+                            <input type="number" id="whileStart" value="0">
+                            <label for="whileCondition">Stop When Greater Than:</label>
+                            <input type="number" id="whileCondition" value="5">
+                            <button onclick="runWhileLoop()">▶️ Run While Loop</button>
+                            <button onclick="clearWhileOutput()">🗑️ Clear</button>
+                        </div>
+                        <div id="whileOutput" class="output"></div>
+                        <div id="whileVisual" class="visual-loop"></div>
+                    </div>
+                </div>
+                
+                <div id="do-while-tab" class="tab-content">
+                    <h4>Do-While Loop</h4>
+                    <p><strong>Use when:</strong> Execute at least once, then check condition</p>
+                    <div class="code-block">
+<span class="keyword">do</span> {
+    <span class="keyword">print</span>(count)
+    count++
+} <span class="keyword">while</span> (count < <span class="number">5</span>)
+                    </div>
+                    <p><strong>Output:</strong> 0, 1, 2, 3, 4</p>
+                    
+                    <div class="interactive-demo">
+                        <h3>Interactive Do-While Loop Demo</h3>
+                        <div class="controls">
+                            <label for="doWhileStart">Start Value:</label>
+                            <input type="number" id="doWhileStart" value="0">
+                            <label for="doWhileCondition">Stop When Greater Than:</label>
+                            <input type="number" id="doWhileCondition" value="5">
+                            <button onclick="runDoWhileLoop()">▶️ Run Do-While Loop</button>
+                            <button onclick="clearDoWhileOutput()">🗑️ Clear</button>
+                        </div>
+                        <div id="doWhileOutput" class="output"></div>
+                        <div id="doWhileVisual" class="visual-loop"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="loop-control">
+            <h2>Loop Control Statements</h2>
+            
+            <h3>1. Break Statement</h3>
+            <p>Exits the loop immediately, even if the loop condition is still true.</p>
+            <div class="code-block">
+<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">10</span>; i++) {
+    <span class="keyword">if</span> (i == <span class="number">5</span>) {
+        <span class="keyword">break</span>  <span class="comment">// Stop when i equals 5</span>
+    }
+    <span class="keyword">print</span>(i)
+}
+<span class="comment">// Output: 1, 2, 3, 4</span>
+            </div>
+
+            <div class="interactive-demo">
+                <div class="controls">
+                    <label for="breakAt">Break at number:</label>
+                    <input type="number" id="breakAt" value="5" min="1" max="10">
+                    <button onclick="demoBreak()">▶️ Demo Break</button>
+                </div>
+                <div id="breakOutput" class="output"></div>
+                <div id="breakVisual" class="visual-loop"></div>
+            </div>
+
+            <h3>2. Continue Statement</h3>
+            <p>Skips the current iteration and moves to the next one.</p>
+            <div class="code-block">
+<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">5</span>; i++) {
+    <span class="keyword">if</span> (i == <span class="number">3</span>) {
+        <span class="keyword">continue</span>  <span class="comment">// Skip when i equals 3</span>
+    }
+    <span class="keyword">print</span>(i)
+}
+<span class="comment">// Output: 1, 2, 4, 5 (3 is skipped)</span>
+            </div>
+
+            <div class="interactive-demo">
+                <div class="controls">
+                    <label for="skipNum">Skip number:</label>
+                    <input type="number" id="skipNum" value="3" min="1" max="10">
+                    <button onclick="demoContinue()">▶️ Demo Continue</button>
+                </div>
+                <div id="continueOutput" class="output"></div>
+                <div id="continueVisual" class="visual-loop"></div>
+            </div>
+        </div>
+
+        <div class="section" id="nested-loops">
+            <h2>Nested Loops</h2>
+            <p>A loop inside another loop! Useful for working with multi-dimensional data or creating patterns.</p>
+            
+            <div class="code-block">
+<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">3</span>; i++) {          <span class="comment">// Outer loop</span>
+    <span class="keyword">for</span> (j = <span class="number">1</span>; j <= <span class="number">3</span>; j++) {      <span class="comment">// Inner loop</span>
+        <span class="keyword">print</span>(i + <span class="string">","</span> + j)
+    }
+}
+            </div>
+
+            <div class="interactive-demo">
+                <h3>Pattern Generator</h3>
+                <div class="controls">
+                    <label for="rows">Rows:</label>
+                    <input type="number" id="rows" value="2" min="1" max="10">
+                    <label for="cols">Columns:</label>
+                    <input type="number" id="cols" value="5" min="1" max="10">
+                    <button onclick="generatePattern()">▶️ Generate Pattern</button>
+                </div>
+                <div id="patternOutput" class="pattern-demo"></div>
+            </div>
+        </div>
+
+        <div class="section" id="real-world-examples">
+            <h2>Real-World Examples</h2>
+            
+            <h3>Example 1: Calculate Sum of Numbers</h3>
+            <div class="code-block">
+sum = <span class="number">0</span>
+<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">100</span>; i++) {
+    sum = sum + i
+}
+<span class="keyword">print</span>(<span class="string">"Sum: "</span> + sum)
+<span class="comment">// Output: Sum: 5050</span>
+            </div>
+
+            <h3>Example 2: Print Even Numbers</h3>
+            <div class="code-block">
+<span class="keyword">for</span> (i = <span class="number">2</span>; i <= <span class="number">20</span>; i = i + <span class="number">2</span>) {
+    <span class="keyword">print</span>(i)
+}
+<span class="comment">// Output: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20</span>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>Try It: Sum Calculator</h3>
+                <div class="controls">
+                    <label for="sumUpTo">Calculate sum from 1 to:</label>
+                    <input type="number" id="sumUpTo" value="10" min="1" max="1000">
+                    <button onclick="calculateSum()">▶️ Calculate</button>
+                </div>
+                <div id="sumOutput" class="output"></div>
+            </div>
+        </div>
+
+        <div class="section" id="common-patterns">
+            <h2>Common Loop Patterns</h2>
+            
+            <div class="interactive-demo">
+                <h3>Interactive Pattern Explorer</h3>
+                <div class="controls">
+                    <button onclick="showMultiplicationTable()">📊 Multiplication Table</button>
+                    <button onclick="showCountdown()">⏱️ Countdown Timer</button>
+                    <button onclick="showFactorial()">🧮 Factorial Calculator</button>
+                </div>
+                <div id="patternDemo" class="output"></div>
+            </div>
+        </div>
+
+        <div class="section" id="quiz-section">
+            <h2>Test Your Knowledge</h2>
+            
+            <div class="quiz-container">
+                <div class="quiz-question" id="quizQuestion">What will be the output of the following code?<br>
+                    <div class="code-block" style="font-size: 1em;">
+<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">5</span>; i++) {<br>
+&nbsp;&nbsp;<span class="keyword">if</span> (i == <span class="number">3</span>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">continue</span>;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">print</span>(i);<br>
+}
+                    </div>
+                </div>
+                
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(this)">A) 1, 2, 3, 4, 5</div>
+                    <div class="quiz-option" onclick="selectOption(this)">B) 1, 2, 4, 5</div>
+                    <div class="quiz-option" onclick="selectOption(this)">C) 1, 2, 3</div>
+                    <div class="quiz-option" onclick="selectOption(this)">D) 2, 3, 4, 5</div>
+                </div>
+                
+                <div class="quiz-feedback" id="quizFeedback"></div>
+                
+                <button onclick="checkAnswer()" style="margin-top: 20px;">✅ Check Answer</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        // Tab functionality
+        function openTab(evt, tabName) {
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            const tabbuttons = document.getElementsByClassName("tab-button");
+            for (let i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // Quiz functionality
+        let selectedOption = null;
+        
+        function selectOption(element) {
+            const options = document.getElementsByClassName("quiz-option");
+            for (let i = 0; i < options.length; i++) {
+                options[i].classList.remove("selected");
+            }
+            
+            element.classList.add("selected");
+            selectedOption = element;
+        }
+        
+        function checkAnswer() {
+            const feedback = document.getElementById("quizFeedback");
+            
+            if (!selectedOption) {
+                feedback.textContent = "Please select an answer!";
+                feedback.className = "quiz-feedback incorrect";
+                feedback.style.display = "block";
+                return;
+            }
+            
+            if (selectedOption.textContent.includes("B) 1, 2, 4, 5")) {
+                feedback.textContent = "Correct! The continue statement skips the iteration when i equals 3.";
+                feedback.className = "quiz-feedback correct";
+            } else {
+                feedback.textContent = "Incorrect. Remember that 'continue' skips the current iteration.";
+                feedback.className = "quiz-feedback incorrect";
+            }
+            
+            feedback.style.display = "block";
+        }
+        
+        // Interactive demos
+        function runForLoop() {
+            const start = parseInt(document.getElementById('forStart').value);
+            const end = parseInt(document.getElementById('forEnd').value);
+            const step = parseInt(document.getElementById('forStep').value);
+            const output = document.getElementById('forOutput');
+            const visual = document.getElementById('forVisual');
+            
+            let result = '<strong>For Loop Output:</strong><br>';
+            visual.innerHTML = '';
+            
+            let count = 0;
+            for (let i = start; i <= end; i += step) {
+                result += i + ' ';
+                setTimeout(() => {
+                    const item = document.createElement('div');
+                    item.className = 'loop-item';
+                    item.textContent = i;
+                    visual.appendChild(item);
+                }, count * 200);
+                count++;
+            }
+            
+            output.innerHTML = result;
+        }
+
+        function clearForOutput() {
+            document.getElementById('forOutput').innerHTML = '';
+            document.getElementById('forVisual').innerHTML = '';
+        }
+
+        function runWhileLoop() {
+            const start = parseInt(document.getElementById('whileStart').value);
+            const condition = parseInt(document.getElementById('whileCondition').value);
+            const output = document.getElementById('whileOutput');
+            const visual = document.getElementById('whileVisual');
+            
+            let result = '<strong>While Loop Output:</strong><br>';
+            visual.innerHTML = '';
+            
+            let i = start;
+            let count = 0;
+            while (i <= condition) {
+                result += i + ' ';
+                const currentValue = i;
+                setTimeout(() => {
+                    const item = document.createElement('div');
+                    item.className = 'loop-item';
+                    item.textContent = currentValue;
+                    visual.appendChild(item);
+                }, count * 200);
+                count++;
+                i++;
+            }
+            
+            output.innerHTML = result;
+        }
+
+        function clearWhileOutput() {
+            document.getElementById('whileOutput').innerHTML = '';
+            document.getElementById('whileVisual').innerHTML = '';
+        }
+        
+        function runDoWhileLoop() {
+            const start = parseInt(document.getElementById('doWhileStart').value);
+            const condition = parseInt(document.getElementById('doWhileCondition').value);
+            const output = document.getElementById('doWhileOutput');
+            const visual = document.getElementById('doWhileVisual');
+            
+            let result = '<strong>Do-While Loop Output:</strong><br>';
+            visual.innerHTML = '';
+            
+            let i = start;
+            let count = 0;
+            
+            do {
+                result += i + ' ';
+                const currentValue = i;
+                setTimeout(() => {
+                    const item = document.createElement('div');
+                    item.className = 'loop-item';
+                    item.textContent = currentValue;
+                    visual.appendChild(item);
+                }, count * 200);
+                count++;
+                i++;
+            } while (i <= condition);
+            
+            output.innerHTML = result;
+        }
+
+        function clearDoWhileOutput() {
+            document.getElementById('doWhileOutput').innerHTML = '';
+            document.getElementById('doWhileVisual').innerHTML = '';
+        }
+
+        function demoBreak() {
+            const breakAt = parseInt(document.getElementById('breakAt').value);
+            const output = document.getElementById('breakOutput');
+            const visual = document.getElementById('breakVisual');
+            
+            let result = '<strong>Break Demo (stopping at ' + breakAt + '):</strong><br>';
+            visual.innerHTML = '';
+            
+            let count = 0;
+            for (let i = 1; i <= 10; i++) {
+                if (i === breakAt) {
+                    result += '<span style="color: red; font-weight: bold;">🛑 BREAK at ' + i + '</span>';
+                    break;
+                }
+                result += i + ' ';
+                setTimeout(() => {
+                    const item = document.createElement('div');
+                    item.className = 'loop-item';
+                    item.textContent = i;
+                    visual.appendChild(item);
+                }, count * 200);
+                count++;
+            }
+            
+            output.innerHTML = result;
+        }
+
+        function demoContinue() {
+            const skipNum = parseInt(document.getElementById('skipNum').value);
+            const output = document.getElementById('continueOutput');
+            const visual = document.getElementById('continueVisual');
+            
+            let result = '<strong>Continue Demo (skipping ' + skipNum + '):</strong><br>';
+            visual.innerHTML = '';
+            
+            let count = 0;
+            for (let i = 1; i <= 10; i++) {
+                if (i === skipNum) {
+                    result += '<span style="color: orange; font-weight: bold;">⏭️ SKIP ' + i + '</span> ';
+                    continue;
+                }
+                result += i + ' ';
+                setTimeout(() => {
+                    const item = document.createElement('div');
+                    item.className = 'loop-item';
+                    item.textContent = i;
+                    visual.appendChild(item);
+                }, count * 200);
+                count++;
+            }
+            
+            output.innerHTML = result;
+        }
+
+        function generatePattern() {
+            const rows = parseInt(document.getElementById('rows').value);
+            const cols = parseInt(document.getElementById('cols').value);
+            const pattern = document.getElementById('patternOutput');
+            
+            pattern.innerHTML = '';
+            pattern.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+            
+            let count = 0;
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    setTimeout(() => {
+                        const cell = document.createElement('div');
+                        cell.className = 'pattern-cell';
+                        cell.textContent = (i + 1) + ',' + (j + 1);
+                        pattern.appendChild(cell);
+                    }, count * 50);
+                    count++;
+                }
+            }
+        }
+
+        function calculateSum() {
+            const upTo = parseInt(document.getElementById('sumUpTo').value);
+            const output = document.getElementById('sumOutput');
+            
+            let sum = 0;
+            let calculation = '<strong>Calculating sum from 1 to ' + upTo + ':</strong><br><br>';
+            
+            for (let i = 1; i <= upTo; i++) {
+                sum += i;
+            }
+            
+            calculation += '1 + 2 + 3 + ... + ' + upTo + ' = <span style="color: #667eea; font-size: 1.5em; font-weight: bold;">' + sum + '</span>';
+            output.innerHTML = calculation;
+        }
+
+
+        function showMultiplicationTable() {
+            const output = document.getElementById('patternDemo');
+            let table = '<strong>Multiplication Table (5 x 5):</strong><br><br>';
+            table += '<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;">';
+            
+            table += '<div style="font-weight: bold;">×</div>';
+            for (let i = 1; i <= 5; i++) {
+                table += '<div style="font-weight: bold; color: #667eea;">' + i + '</div>';
+            }
+            
+            for (let i = 1; i <= 5; i++) {
+                table += '<div style="font-weight: bold; color: #667eea;">' + i + '</div>';
+                for (let j = 1; j <= 5; j++) {
+                    table += '<div style="background: #f8f9fa; padding: 10px; border-radius: 5px; text-align: center;">' + (i * j) + '</div>';
+                }
+            }
+            table += '</div>';
+            output.innerHTML = table;
+        }
+
+        function showCountdown() {
+            const output = document.getElementById('patternDemo');
+            output.innerHTML = '<strong>Countdown from 10:</strong><br><br><div id="countdownNumbers"></div>';
+            
+            const countdownDiv = document.getElementById('countdownNumbers');
+            let num = 10;
+            
+            const interval = setInterval(() => {
+                countdownDiv.innerHTML = '<div style="font-size: 3em; color: #667eea; font-weight: bold;">' + num + '</div>';
+                num--;
+                
+                if (num < 0) {
+                    clearInterval(interval);
+                    countdownDiv.innerHTML += '<div style="font-size: 2em; color: #764ba2; font-weight: bold; margin-top: 20px;">🚀 BLAST OFF!</div>';
+                }
+            }, 500);
+        }
+
+        function showFactorial() {
+            const output = document.getElementById('patternDemo');
+            const n = 6;
+            let factorial = 1;
+            let calculation = '<strong>Calculating ' + n + '! (factorial):</strong><br><br>';
+            
+            calculation += n + '! = ';
+            for (let i = n; i >= 1; i--) {
+                calculation += i;
+                if (i > 1) calculation += ' × ';
+                factorial *= i;
+            }
+            
+            calculation += ' = <span style="color: #667eea; font-size: 1.5em; font-weight: bold;">' + factorial + '</span>';
+            output.innerHTML = calculation;
+        }
+    </script>
+</body>
+</html>

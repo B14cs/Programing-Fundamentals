@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Conditions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #f5576c;
+            margin-bottom: 15px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.5em;
+            color: #666;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 6px solid #f5576c;
+            font-size: 1.3em;
+            line-height: 1.8;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .interactive-section {
+            margin: 40px 0;
+            padding: 35px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 3px dashed #f5576c;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-section:hover {
+            border-color: #f093fb;
+            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.2);
+        }
+
+        .interactive-section h2 {
+            color: #f5576c;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .interactive-section h2::before {
+            content: "🎮";
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 25px 0;
+        }
+
+        @media (max-width: 900px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .box-container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .box-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .decision-box {
+            border: 4px solid #f5576c;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            transition: all 0.5s ease;
+        }
+
+        .decision-box.true {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            color: #006633;
+            border-color: #4CAF50;
+        }
+
+        .decision-box.false {
+            background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%);
+            color: #660033;
+            border-color: #FF5722;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border: 3px solid #f5576c;
+            border-radius: 8px;
+            width: 100%;
+            margin: 12px 0;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #f093fb;
+            box-shadow: 0 0 15px rgba(245, 87, 108, 0.3);
+        }
+
+        button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 16px 25px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+            flex: 1;
+            min-width: 120px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin: 20px 0;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+            overflow-x: auto;
+        }
+
+        .keyword {
+            color: #ff79c6;
+        }
+
+        .string {
+            color: #f1fa8c;
+        }
+
+        .number {
+            color: #bd93f9;
+        }
+
+        .comment {
+            color: #6272a4;
+        }
+
+        .operators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .operator-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-top: 5px solid #f5576c;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .operator-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .operator-card h3 {
+            color: #f5576c;
+            font-size: 1.6em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .operator-symbol {
+            font-size: 3em;
+            color: #f093fb;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .flowchart {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid #f5576c;
+        }
+
+        .flow-box {
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            min-width: 180px;
+            transition: all 0.3s ease;
+        }
+
+        .flow-condition {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            clip-path: polygon(20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%, 0% 50%);
+            padding: 20px 40px;
+        }
+
+        .flow-action {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
+
+        .flow-arrow {
+            font-size: 2.5em;
+            color: #f5576c;
+        }
+
+        .split-path {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .path-label {
+            font-size: 1.1em;
+            color: #f5576c;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .emoji-result {
+            font-size: 3.5em;
+            margin: 15px 0;
+            animation: bounce 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        select {
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border: 3px solid #f5576c;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            margin: 12px 0;
+            width: 100%;
+        }
+
+        .logic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .logic-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 3px solid #f5576c;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .logic-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .logic-card h3 {
+            color: #f5576c;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .truth-table {
+            width: 100%;
+            margin: 15px 0;
+            border-collapse: collapse;
+            font-size: 1.1em;
+        }
+
+        .truth-table th, .truth-table td {
+            padding: 12px;
+            border: 2px solid #f5576c;
+            text-align: center;
+        }
+
+        .truth-table th {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            font-weight: bold;
+        }
+
+        .truth-table td {
+            background: #fef9f7;
+        }
+
+        .section-title {
+            font-size: 2.8em;
+            color: #f093fb;
+            margin: 40px 0 20px;
+            text-align: center;
+            border-bottom: 3px solid #f5576c;
+            padding-bottom: 15px;
+        }
+
+
+        .tip-box {
+            background: #fff9c4;
+            border-left: 5px solid #ffd600;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 1.1em;
+        }
+
+        /* Modal for operator examples */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+            border: 5px solid #f5576c;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2.5em;
+            cursor: pointer;
+            color: #f5576c;
+            transition: color 0.3s;
+            background: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .close-modal:hover {
+            color: #f093fb;
+            transform: scale(1.1);
+        }
+
+        .modal-title {
+            color: #f5576c;
+            font-size: 2.8em;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 3px solid #f093fb;
+            padding-bottom: 15px;
+        }
+
+        .modal-code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 30px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.4em;
+            line-height: 1.8;
+            margin: 20px 0;
+            box-shadow: inset 0 4px 15px rgba(0,0,0,0.5);
+            overflow-x: auto;
+        }
+
+        .operator-description {
+            font-size: 1.4em;
+            line-height: 1.7;
+            margin: 20px 0;
+            color: #444;
+        }
+
+        .operator-icon {
+            font-size: 3em;
+            margin-right: 20px;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .interactive-section {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .split-path {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .modal-content {
+                padding: 25px;
+            }
+            
+            .modal-title {
+                font-size: 2.2em;
+            }
+            
+            .modal-code {
+                font-size: 1.2em;
+                padding: 20px;
+            }
+            
+            .operator-description {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔀 Understanding Conditions</h1>
+        <p class="subtitle">Make decisions in your code based on different situations</p>
+        
+        <div class="concept-box">
+            <strong>What are Conditions?</strong><br>
+            Conditions allow your program to make decisions and execute different code based on whether something is true or false. Just like in real life: "IF it's raining, THEN take an umbrella, ELSE leave it at home."
+        </div>
+
+        <!-- Comparison Operators -->
+        <h2 id="operators" class="section-title">Comparison Operators</h2>
+        <div class="interactive-section">
+            <h2>Tools for Making Comparisons</h2>
+            <div class="tip-box">
+                💡 <strong>Tip:</strong> Comparison operators return boolean values (true or false) based on the comparison
+            </div>
+            <div class="operators-grid">
+                <div class="operator-card" onclick="showOperatorExample('equal')">
+                    <h3>Equal to</h3>
+                    <div class="operator-symbol">==</div>
+                    <div class="example" style="background: #f5f7fa; padding: 12px; border-radius: 8px; font-family: 'Courier New', monospace;">
+                        5 == 5  // true<br>
+                        "hi" == "hi"  // true<br>
+                        3 == 5  // false
+                    </div>
+                </div>
+                <div class="operator-card" onclick="showOperatorExample('strict-equal')">
+                    <h3>Strict Equal</h3>
+                    <div class="operator-symbol">===</div>
+                    <div class="example" style="background: #f5f7fa; padding: 12px; border-radius: 8px; font-family: 'Courier New', monospace;">
+                        5 === 5  // true<br>
+                        5 === "5"  // false<br>
+                        (checks type too)
+                    </div>
+                </div>
+                <div class="operator-card" onclick="showOperatorExample('not-equal')">
+                    <h3>Not Equal</h3>
+                    <div class="operator-symbol">!=</div>
+                    <div class="example" style="background: #f5f7fa; padding: 12px; border-radius: 8px; font-family: 'Courier New', monospace;">
+                        5 != 3  // true<br>
+                        "hi" != "hi"  // false<br>
+                        10 != 10  // false
+                    </div>
+                </div>
+                <div class="operator-card" onclick="showOperatorExample('greater-than')">
+                    <h3>Greater Than</h3>
+                    <div class="operator-symbol">></div>
+                    <div class="example" style="background: #f5f7fa; padding: 12px; border-radius: 8px; font-family: 'Courier New', monospace;">
+                        10 > 5  // true<br>
+                        3 > 7  // false<br>
+                        5 > 5  // false
+                    </div>
+                </div>
+                <div class="operator-card" onclick="showOperatorExample('less-than')">
+                    <h3>Less Than</h3>
+                    <div class="operator-symbol"><</div>
+                    <div class="example" style="background: #f5f7fa; padding: 12px; border-radius: 8px; font-family: 'Courier New', monospace;">
+                        3 < 7  // true<br>
+                        10 < 5  // false<br>
+                        5 < 5  // false
+                    </div>
+                </div>
+                <div class="operator-card" onclick="showOperatorExample('greater-equal')">
+                    <h3>Greater or Equal</h3>
+                    <div class="operator-symbol">>=</div>
+                    <div class="example" style="background: #f5f7fa; padding: 12px; border-radius: 8px; font-family: 'Courier New', monospace;">
+                        10 >= 5  // true<br>
+                        5 >= 5  // true<br>
+                        3 >= 7  // false
+                    </div>
+                </div>
+                <div class="operator-card" onclick="showOperatorExample('less-equal')">
+                    <h3>Less or Equal</h3>
+                    <div class="operator-symbol"><=</div>
+                    <div class="example" style="background: #f5f7fa; padding: 12px; border-radius: 8px; font-family: 'Courier New', monospace;">
+                        3 <= 7  // true<br>
+                        5 <= 5  // true<br>
+                        10 <= 5  // false
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo 1: Simple IF Statement -->
+        <h2 id="if" class="section-title">IF Statements</h2>
+        <div class="interactive-section">
+            <h2>Try It: IF Statement - Age Check</h2>
+            <div class="demo-grid">
+                <div class="box-container">
+                    <h3 style="color: #f5576c; margin-bottom: 20px;">Enter Your Age</h3>
+                    <input type="number" id="age" placeholder="Enter age" value="18">
+                    <button onclick="checkAge()" style="width: 100%;">Check Eligibility</button>
+                    <div class="flowchart" style="margin-top: 30px; padding: 20px;">
+                        <div class="flow-box flow-condition">Age >= 18?</div>
+                        <div class="flow-arrow">⬇️</div>
+                        <div class="split-path">
+                            <div style="text-align: center;">
+                                <div class="path-label">TRUE</div>
+                                <div class="flow-box flow-action">Can Vote ✅</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div class="path-label">FALSE</div>
+                                <div class="flow-box flow-action">Too Young ❌</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-container">
+                    <h3 style="color: #f5576c; margin-bottom: 20px;">Result</h3>
+                    <div class="decision-box" id="ageResult">
+                        <div class="emoji-result">🤔</div>
+                        <div>Enter an age to check</div>
+                    </div>
+                    <div class="code-block" id="ageCode">
+                        <span class="keyword">let</span> age = <span class="number">18</span>;<br>
+                        <br>
+                        <span class="keyword">if</span> (age >= <span class="number">18</span>) {<br>
+                        &nbsp;&nbsp;<span class="comment">// This runs if true</span><br>
+                        &nbsp;&nbsp;console.log(<span class="string">"Can vote"</span>);<br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo 2: IF-ELSE Statement -->
+        <h2 id="if-else" class="section-title">IF-ELSE Statements</h2>
+        <div class="interactive-section">
+            <h2>Try It: IF-ELSE - Password Check</h2>
+            <div class="demo-grid">
+                <div class="box-container">
+                    <h3 style="color: #f5576c; margin-bottom: 20px;">Enter Password</h3>
+                    <input type="text" id="password" placeholder="Try: secret123" value="">
+                    <button onclick="checkPassword()" style="width: 100%;">Verify Password</button>
+                    <p style="margin-top: 20px; color: #666; font-size: 1.1em;">
+                        💡 Hint: The correct password is "secret123"
+                    </p>
+                </div>
+                <div class="box-container">
+                    <h3 style="color: #f5576c; margin-bottom: 20px;">Access Status</h3>
+                    <div class="decision-box" id="passwordResult">
+                        <div class="emoji-result">🔐</div>
+                        <div>Enter password to check</div>
+                    </div>
+                    <div class="code-block" id="passwordCode">
+                        <span class="keyword">let</span> password = <span class="string">"???"</span>;<br>
+                        <br>
+                        <span class="keyword">if</span> (password === <span class="string">"secret123"</span>) {<br>
+                        &nbsp;&nbsp;console.log(<span class="string">"Access Granted"</span>);<br>
+                        } <span class="keyword">else</span> {<br>
+                        &nbsp;&nbsp;console.log(<span class="string">"Access Denied"</span>);<br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo 3: IF-ELSE IF-ELSE -->
+        <h2 id="else-if" class="section-title">ELSE IF Statements</h2>
+        <div class="interactive-section">
+            <h2>Try It: IF-ELSE IF-ELSE - Grade Calculator</h2>
+            <div class="demo-grid">
+                <div class="box-container">
+                    <h3 style="color: #f5576c; margin-bottom: 20px;">Enter Score (0-100)</h3>
+                    <input type="number" id="score" placeholder="Enter score" value="85" min="0" max="100">
+                    <button onclick="calculateGrade()" style="width: 100%;">Calculate Grade</button>
+                    <div style="margin-top: 30px; background: #f5f7fa; padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #f5576c; margin-bottom: 15px;">Grading Scale:</h4>
+                        <p style="font-size: 1.1em; line-height: 2;">
+                            90-100: A 🌟<br>
+                            80-89: B 📘<br>
+                            70-79: C 📗<br>
+                            60-69: D 📙<br>
+                            Below 60: F 📕
+                        </p>
+                    </div>
+                </div>
+                <div class="box-container">
+                    <h3 style="color: #f5576c; margin-bottom: 20px;">Your Grade</h3>
+                    <div class="decision-box" id="gradeResult">
+                        <div class="emoji-result">📊</div>
+                        <div>Enter a score</div>
+                    </div>
+                    <div class="code-block" id="gradeCode">
+                        <span class="keyword">let</span> score = <span class="number">85</span>;<br>
+                        <br>
+                        <span class="keyword">if</span> (score >= <span class="number">90</span>) {<br>
+                        &nbsp;&nbsp;grade = <span class="string">"A"</span>;<br>
+                        } <span class="keyword">else if</span> (score >= <span class="number">80</span>) {<br>
+                        &nbsp;&nbsp;grade = <span class="string">"B"</span>;<br>
+                        } <span class="keyword">else if</span> (score >= <span class="number">70</span>) {<br>
+                        &nbsp;&nbsp;grade = <span class="string">"C"</span>;<br>
+                        } <span class="keyword">else if</span> (score >= <span class="number">60</span>) {<br>
+                        &nbsp;&nbsp;grade = <span class="string">"D"</span>;<br>
+                        } <span class="keyword">else</span> {<br>
+                        &nbsp;&nbsp;grade = <span class="string">"F"</span>;<br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logical Operators -->
+        <h2 id="logic" class="section-title">Logical Operators</h2>
+        <div class="interactive-section">
+            <h2>Logical Operators - Combining Conditions</h2>
+            <div class="logic-grid">
+                <div class="logic-card">
+                    <h3>AND (&&)</h3>
+                    <p style="font-size: 1.2em; margin: 15px 0;">Both conditions must be true</p>
+                    <table class="truth-table">
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>A && B</th>
+                        </tr>
+                        <tr>
+                            <td>true</td>
+                            <td>true</td>
+                            <td style="background: #84fab0; font-weight: bold;">true</td>
+                        </tr>
+                        <tr>
+                            <td>true</td>
+                            <td>false</td>
+                            <td style="background: #fccb90;">false</td>
+                        </tr>
+                        <tr>
+                            <td>false</td>
+                            <td>true</td>
+                            <td style="background: #fccb90;">false</td>
+                        </tr>
+                        <tr>
+                            <td>false</td>
+                            <td>false</td>
+                            <td style="background: #fccb90;">false</td>
+                        </tr>
+                    </table>
+                    <div class="code-block" style="font-size: 1em;">
+                        <span class="keyword">if</span> (age >= <span class="number">18</span> && hasLicense) {<br>
+                        &nbsp;&nbsp;<span class="comment">// Can drive</span><br>
+                        }
+                    </div>
+                </div>
+                
+                <div class="logic-card">
+                    <h3>OR (||)</h3>
+                    <p style="font-size: 1.2em; margin: 15px 0;">At least one condition must be true</p>
+                    <table class="truth-table">
+                        <tr>
+                            <th>A</th>
+                            <th>B</th>
+                            <th>A || B</th>
+                        </tr>
+                        <tr>
+                            <td>true</td>
+                            <td>true</td>
+                            <td style="background: #84fab0; font-weight: bold;">true</td>
+                        </tr>
+                        <tr>
+                            <td>true</td>
+                            <td>false</td>
+                            <td style="background: #84fab0; font-weight: bold;">true</td>
+                        </tr>
+                        <tr>
+                            <td>false</td>
+                            <td>true</td>
+                            <td style="background: #84fab0; font-weight: bold;">true</td>
+                        </tr>
+                        <tr>
+                            <td>false</td>
+                            <td>false</td>
+                            <td style="background: #fccb90;">false</td>
+                        </tr>
+                    </table>
+                    <div class="code-block" style="font-size: 1em;">
+                        <span class="keyword">if</span> (isWeekend || isHoliday) {<br>
+                        &nbsp;&nbsp;<span class="comment">// No school!</span><br>
+                        }
+                    </div>
+                </div>
+
+                <div class="logic-card">
+                    <h3>NOT (!)</h3>
+                    <p style="font-size: 1.2em; margin: 15px 0;">Reverses the condition</p>
+                    <table class="truth-table">
+                        <tr>
+                            <th>A</th>
+                            <th>!A</th>
+                        </tr>
+                        <tr>
+                            <td>true</td>
+                            <td style="background: #fccb90;">false</td>
+                        </tr>
+                        <tr>
+                            <td>false</td>
+                            <td style="background: #84fab0; font-weight: bold;">true</td>
+                        </tr>
+                    </table>
+                    <div class="code-block" style="font-size: 1em;">
+                        <span class="keyword">if</span> (!isRaining) {<br>
+                        &nbsp;&nbsp;<span class="comment">// Go outside</span><br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Demo 4: Complex Conditions -->
+        <div class="interactive-section">
+            <h2>Try It: Complex Conditions - Movie Ticket</h2>
+            <div class="demo-grid">
+                <div class="box-container">
+                    <h3 style="color: #f5576c; margin-bottom: 20px;">Ticket Information</h3>
+                    <input type="number" id="movieAge" placeholder="Your age" value="25">
+                    <label style="font-size: 1.2em; margin: 15px 0; display: flex; align-items: center;">
+                        <input type="checkbox" id="isStudent" style="width: auto; margin-right: 10px;">
+                        Student Discount?
+                    </label>
+                    <button onclick="calculateTicket()" style="width: 100%;">Calculate Price</button>
+                </div>
+                <div class="box-container">
+                    <h3 style="color: #f5576c; margin-bottom: 20px;">Ticket Price</h3>
+                    <div class="decision-box" id="ticketResult">
+                        <div class="emoji-result">🎬</div>
+                        <div>Click to calculate</div>
+                    </div>
+                    <div class="code-block" id="ticketCode">
+                        <span class="keyword">let</span> basePrice = <span class="number">15</span>;<br>
+                        <br>
+                        <span class="keyword">if</span> (age < <span class="number">12</span> || age >= <span class="number">65</span>) {<br>
+                        &nbsp;&nbsp;price = basePrice * <span class="number">0.5</span>; <span class="comment">// 50% off</span><br>
+                        } <span class="keyword">else if</span> (isStudent) {<br>
+                        &nbsp;&nbsp;price = basePrice * <span class="number">0.7</span>; <span class="comment">// 30% off</span><br>
+                        } <span class="keyword">else</span> {<br>
+                        &nbsp;&nbsp;price = basePrice;<br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-box">
+            <strong>💡 Key Takeaways:</strong><br>
+            • <strong>IF</strong> statements execute code only when a condition is true<br>
+            • <strong>ELSE</strong> provides an alternative when the condition is false<br>
+            • <strong>ELSE IF</strong> allows checking multiple conditions in sequence<br>
+            • Use <strong>&&</strong> (AND) when both conditions must be true<br>
+            • Use <strong>||</strong> (OR) when at least one condition must be true<br>
+            • Use <strong>!</strong> (NOT) to reverse a condition<br>
+            • Always test your conditions with different values to ensure they work correctly!
+        </div>
+    </div>
+
+    <!-- Modal for operator examples -->
+    <div id="operatorModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeOperatorModal()">&times;</span>
+            <div class="modal-header">
+                <span class="operator-icon" id="modalOperatorIcon">🔢</span>
+                <h2 class="modal-title" id="modalOperatorTitle">Operator</h2>
+            </div>
+            <div class="operator-description" id="modalOperatorDescription"></div>
+            <div class="modal-code" id="modalOperatorCode"></div>
+            <div class="operator-description" id="modalOperatorDetails"></div>
+        </div>
+    </div>
+
+    <script>
+        // Operator examples modal
+        function showOperatorExample(operator) {
+            const modal = document.getElementById('operatorModal');
+            const title = document.getElementById('modalOperatorTitle');
+            const description = document.getElementById('modalOperatorDescription');
+            const code = document.getElementById('modalOperatorCode');
+            const details = document.getElementById('modalOperatorDetails');
+            const icon = document.getElementById('modalOperatorIcon');
+            
+            const operatorData = {
+                'equal': {
+                    icon: '⚖️',
+                    title: 'Equal To (==)',
+                    description: 'Checks if two values are equal (with type conversion)',
+                    code: '5 == 5  // true<br>"5" == 5  // true (type conversion)<br>5 == 3  // false',
+                    details: 'The == operator performs type conversion before comparison. This means it can consider values of different types as equal if they have the same value after conversion.'
+                },
+                'strict-equal': {
+                    icon: '🔒',
+                    title: 'Strict Equal (===)',
+                    description: 'Checks if two values are equal without type conversion',
+                    code: '5 === 5  // true<br>"5" === 5  // false (different types)<br>5 === "5"  // false',
+                    details: 'The === operator does not perform type conversion. Both the value AND the type must be the same for it to return true. This is generally preferred over ==.'
+                },
+                'not-equal': {
+                    icon: '🚫',
+                    title: 'Not Equal (!=)',
+                    description: 'Checks if two values are not equal (with type conversion)',
+                    code: '5 != 3  // true<br>5 != 5  // false<br>"5" != 5  // false (type conversion)',
+                    details: 'The != operator performs type conversion before comparison. It returns true if the values are not equal after conversion.'
+                },
+                'greater-than': {
+                    icon: '⬆️',
+                    title: 'Greater Than (>)',
+                    description: 'Checks if the left value is greater than the right value',
+                    code: '10 > 5  // true<br>5 > 10  // false<br>5 > 5  // false',
+                    details: 'The > operator compares two values numerically. For strings, it compares based on character codes (lexicographical order).'
+                },
+                'less-than': {
+                    icon: '⬇️',
+                    title: 'Less Than (<)',
+                    description: 'Checks if the left value is less than the right value',
+                    code: '3 < 7  // true<br>10 < 5  // false<br>5 < 5  // false',
+                    details: 'The < operator compares two values numerically. For strings, it compares based on character codes (lexicographical order).'
+                },
+                'greater-equal': {
+                    icon: '⬆️➖',
+                    title: 'Greater Than or Equal (>=)',
+                    description: 'Checks if the left value is greater than or equal to the right value',
+                    code: '10 >= 5  // true<br>5 >= 5  // true<br>3 >= 7  // false',
+                    details: 'The >= operator returns true if the left value is greater than OR equal to the right value.'
+                },
+                'less-equal': {
+                    icon: '⬇️➖',
+                    title: 'Less Than or Equal (<=)',
+                    description: 'Checks if the left value is less than or equal to the right value',
+                    code: '3 <= 7  // true<br>5 <= 5  // true<br>10 <= 5  // false',
+                    details: 'The <= operator returns true if the left value is less than OR equal to the right value.'
+                }
+            };
+            
+            const data = operatorData[operator];
+            icon.textContent = data.icon;
+            title.textContent = data.title;
+            description.textContent = data.description;
+            code.innerHTML = data.code;
+            details.textContent = data.details;
+            
+            modal.style.display = 'flex';
+        }
+        
+        function closeOperatorModal() {
+            document.getElementById('operatorModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside the content
+        window.onclick = function(event) {
+            const modal = document.getElementById('operatorModal');
+            if (event.target === modal) {
+                closeOperatorModal();
+            }
+        }
+
+        function checkAge() {
+            const age = parseInt(document.getElementById('age').value);
+            const result = document.getElementById('ageResult');
+            
+            if (age >= 18) {
+                result.className = 'decision-box true';
+                result.innerHTML = `
+                    <div class="emoji-result">✅</div>
+                    <div>You can vote!</div>
+                    <div style="font-size: 0.8em; margin-top: 10px;">Age ${age} is 18 or older</div>
+                `;
+            } else {
+                result.className = 'decision-box false';
+                result.innerHTML = `
+                    <div class="emoji-result">❌</div>
+                    <div>Too young to vote</div>
+                    <div style="font-size: 0.8em; margin-top: 10px;">Age ${age} is under 18</div>
+                `;
+            }
+            document.getElementById('ageCode').innerHTML = `
+                <span class="keyword">let</span> age = <span class="number">${age}</span>;<br>
+                <br>
+                <span class="keyword">if</span> (age >= <span class="number">18</span>) {<br>
+                &nbsp;&nbsp;<span class="comment">// This runs if true</span><br>
+                &nbsp;&nbsp;console.log(<span class="string">"Can vote"</span>);<br>
+                } <span class="keyword">else</span> {<br>
+                &nbsp;&nbsp;<span class="comment">// This runs if false</span><br>
+                &nbsp;&nbsp;console.log(<span class="string">"Too young"</span>);<br>
+                }
+            `;
+        }
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            const result = document.getElementById('passwordResult');
+            const correctPassword = 'secret123';
+            
+            if (password === correctPassword) {
+                result.className = 'decision-box true';
+                result.innerHTML = `
+                    <div class="emoji-result">🔓</div>
+                    <div>Access Granted</div>
+                    <div style="font-size: 0.8em; margin-top: 10px;">Correct password!</div>
+                `;
+            } else {
+                result.className = 'decision-box false';
+                result.innerHTML = `
+                    <div class="emoji-result">🔒</div>
+                    <div>Access Denied</div>
+                    <div style="font-size: 0.8em; margin-top: 10px;">Incorrect password</div>
+                `;
+            }
+            document.getElementById('passwordCode').innerHTML = `
+                <span class="keyword">let</span> password = <span class="string">"${password}"</span>;<br>
+                <br>
+                <span class="keyword">if</span> (password === <span class="string">"${correctPassword}"</span>) {<br>
+                &nbsp;&nbsp;console.log(<span class="string">"Access Granted"</span>);<br>
+                } <span class="keyword">else</span> {<br>
+                &nbsp;&nbsp;console.log(<span class="string">"Access Denied"</span>);<br>
+                }
+            `;
+        }
+        function calculateGrade() {
+            const score = parseInt(document.getElementById('score').value);
+            const result = document.getElementById('gradeResult');
+            let grade = '';
+            let emoji = '';
+            
+            if (score >= 90) {
+                grade = 'A';
+                emoji = '🌟';
+            } else if (score >= 80) {
+                grade = 'B';
+                emoji = '📘';
+            } else if (score >= 70) {
+                grade = 'C';
+                emoji = '📗';
+            } else if (score >= 60) {
+                grade = 'D';
+                emoji = '📙';
+            } else {
+                grade = 'F';
+                emoji = '📕';
+            }
+
+            result.className = 'decision-box true';
+            result.innerHTML = `
+                <div class="emoji-result">${emoji}</div>
+                <div>Your Grade: ${grade}</div>
+                <div style="font-size: 0.8em; margin-top: 10px;">Score: ${score}</div>
+            `;
+
+            document.getElementById('gradeCode').innerHTML = `
+                <span class="keyword">let</span> score = <span class="number">${score}</span>;<br>
+                <br>
+                <span class="keyword">if</span> (score >= <span class="number">90</span>) {<br>
+                &nbsp;&nbsp;grade = <span class="string">"A"</span>;<br>
+                } <span class="keyword">else if</span> (score >= <span class="number">80</span>) {<br>
+                &nbsp;&nbsp;grade = <span class="string">"B"</span>;<br>
+                } <span class="keyword">else if</span> (score >= <span class="number">70</span>) {<br>
+                &nbsp;&nbsp;grade = <span class="string">"C"</span>;<br>
+                } <span class="keyword">else if</span> (score >= <span class="number">60</span>) {<br>
+                &nbsp;&nbsp;grade = <span class="string">"D"</span>;<br>
+                } <span class="keyword">else</span> {<br>
+                &nbsp;&nbsp;grade = <span class="string">"F"</span>;<br>
+                }
+            `;
+        }
+        function calculateTicket() {
+            const age = parseInt(document.getElementById('movieAge').value);
+            const isStudent = document.getElementById('isStudent').checked;
+            const result = document.getElementById('ticketResult');
+            const basePrice = 15;
+            let price = basePrice;
+            let discountInfo = '';
+
+            if (age < 12 || age >= 65) {
+                price = basePrice * 0.5; // 50% off
+                discountInfo = ' (50% off)';
+            } else if (isStudent) {
+                price = basePrice * 0.7; // 30% off
+                discountInfo = ' (30% off)';
+            }
+
+            result.className = 'decision-box true';
+            result.innerHTML = `
+                <div class="emoji-result">🎟️</div>
+                <div>Ticket Price: $${price.toFixed(2)}${discountInfo}</div>
+                <div style="font-size: 0.8em; margin-top: 10px;">Age: ${age}, Student: ${isStudent}</div>
+            `;
+
+            document.getElementById('ticketCode').innerHTML = `
+                <span class="keyword">let</span> basePrice = <span class="number">15</span>;<br>
+                <br>
+                <span class="keyword">if</span> (age &lt; <span class="number">12</span> || age >= <span class="number">65</span>) {<br>
+                &nbsp;&nbsp;price = basePrice * <span class="number">0.5</span>; <span class="comment">// 50% off</span><br>
+                } <span class="keyword">else if</span> (isStudent) {<br>
+                &nbsp;&nbsp;price = basePrice * <span class="number">0.7</span>; <span class="comment">// 30% off</span><br>
+                } <span class="keyword">else</span> {<br>
+                &nbsp;&nbsp;price = basePrice;<br>
+                }
+            `;
+        }
+
+        // Initialize with default values
+        window.onload = function() {
+            checkAge();
+            checkPassword();
+            calculateGrade();
+            calculateTicket();
+        };
+    </script>
+</body>
+</html>
