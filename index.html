@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +23,14 @@
             overflow: hidden;
         }
 
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                align-items: flex-start;
+                padding: 20px 15px;
+            }
+        }
+
         .container {
             max-width: 1600px;
             width: 100%;
@@ -33,7 +42,7 @@
             font-weight: 800;
             color: white;
             margin-bottom: 60px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             animation: fadeIn 0.8s ease-out;
         }
 
@@ -72,14 +81,14 @@
             background: white;
             padding: 30px;
             border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            border: 5px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 5px solid rgba(255, 255, 255, 0.3);
             transition: all 0.4s ease;
         }
 
         .qr-code:hover {
             transform: scale(1.05);
-            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
         }
 
         .qr-code img {
@@ -87,11 +96,11 @@
         }
 
         .lesson-card {
-            background: rgba(255,255,255,0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 35px 25px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
             border: 2px solid transparent;
@@ -99,7 +108,7 @@
 
         .lesson-card:hover {
             transform: translateX(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
             border-color: white;
         }
 
@@ -132,13 +141,14 @@
         }
 
         @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px); 
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -164,6 +174,10 @@
         }
 
         @media (max-width: 768px) {
+            .container {
+                padding: 20px 0;
+            }
+
             h1 {
                 font-size: 2em;
                 margin-bottom: 30px;
@@ -174,19 +188,32 @@
                 margin-bottom: 30px;
             }
 
-            .qr-code {
-                padding: 20px;
-            }
-
-            .qr-code img {
-                width: 250px !important;
-                height: 250px !important;
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                display: flex;
+                flex-direction: column;
             }
 
             .lessons-left,
             .lessons-right {
                 flex-direction: column;
                 gap: 15px;
+                order: 1;
+            }
+
+            .qr-section {
+                order: 2;
+                margin-top: 20px;
+            }
+
+            .qr-code {
+                padding: 20px;
+            }
+
+            .qr-code img {
+                width: 280px !important;
+                height: 280px !important;
             }
 
             .lesson-card {
@@ -203,11 +230,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>📚 Programming Concepts Learning Hub</h1>
 
-        <div class="lessons-section">            
+        <div class="lessons-section">
             <div class="content-wrapper">
                 <div class="lessons-left">
                     <div class="lesson-card" onclick="window.location.href='Variables.html'">
@@ -215,7 +243,7 @@
                         <h3>Variables</h3>
                         <p>Store and manipulate data</p>
                     </div>
-                    
+
                     <div class="lesson-card" onclick="window.location.href='Conditions.html'">
                         <span class="lesson-icon">🔀</span>
                         <h3>Conditions</h3>
@@ -225,7 +253,8 @@
 
                 <div class="qr-section">
                     <div class="qr-code">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://b14cs.github.io/Programing-Fundamentals/" alt="QR Code to Programming Fundamentals" width="465" height="465">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://b14cs.github.io/Programing-Fundamentals/"
+                            alt="QR Code to Programming Fundamentals" width="465" height="465">
                     </div>
                 </div>
 
@@ -235,7 +264,7 @@
                         <h3>Loops</h3>
                         <p>Repeat actions efficiently</p>
                     </div>
-                    
+
                     <div class="lesson-card" onclick="window.location.href='Functions.html'">
                         <span class="lesson-icon">📜</span>
                         <h3>Functions</h3>
@@ -246,4 +275,5 @@
         </div>
     </div>
 </body>
+
 </html>
