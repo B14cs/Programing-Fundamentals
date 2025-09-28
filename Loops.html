@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +30,7 @@
             color: white;
             font-size: 4em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .subtitle {
@@ -43,7 +44,7 @@
             border-radius: 20px;
             padding: 40px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
 
@@ -169,6 +170,53 @@
             transform: translateY(0);
         }
 
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .next-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-left: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .next-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
         input[type="number"] {
             padding: 12px;
             font-size: 1.3em;
@@ -230,6 +278,7 @@
                 opacity: 0;
                 transform: scale(0.5);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1);
@@ -253,7 +302,7 @@
 
         .loop-type:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .loop-type h4 {
@@ -430,26 +479,36 @@
             h1 {
                 font-size: 2.5em;
             }
-            
+
             .subtitle {
                 font-size: 1.4em;
             }
-            
+
             .section {
                 padding: 20px;
             }
-            
+
             .controls {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            
+
             .comparison-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .next-button {
+                margin-left: 0;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>🔄 Loops</h1>
@@ -457,50 +516,55 @@
 
         <div class="section" id="what-are-loops">
             <h2>What are Loops?</h2>
-            <p>A <span class="highlight">loop</span> is a programming structure that repeats a block of code multiple times. Instead of writing the same code over and over, we use loops to execute statements repeatedly.</p>
-            
+            <p>A <span class="highlight">loop</span> is a programming structure that repeats a block of code multiple
+                times. Instead of writing the same code over and over, we use loops to execute statements repeatedly.
+            </p>
+
             <div class="info-box">
-                <strong>Key Concept:</strong> Loops save time, reduce code duplication, and make programs more efficient!
+                <strong>Key Concept:</strong> Loops save time, reduce code duplication, and make programs more
+                efficient!
             </div>
 
             <h3>Why Do We Need Loops?</h3>
             <p>Imagine you want to print numbers from 1 to 100. Without loops:</p>
             <div class="code-block">
-<span class="keyword">print</span>(<span class="number">1</span>)
-<span class="keyword">print</span>(<span class="number">2</span>)
-<span class="keyword">print</span>(<span class="number">3</span>)
-<span class="comment">// ... 97 more lines!</span>
-<span class="keyword">print</span>(<span class="number">100</span>)
+                <span class="keyword">print</span>(<span class="number">1</span>)
+                <span class="keyword">print</span>(<span class="number">2</span>)
+                <span class="keyword">print</span>(<span class="number">3</span>)
+                <span class="comment">// ... 97 more lines!</span>
+                <span class="keyword">print</span>(<span class="number">100</span>)
             </div>
 
             <p>With a loop:</p>
             <div class="code-block">
-<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">100</span>; i++) {
-    <span class="keyword">print</span>(i)
-}
+                <span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">
+                    100</span>; i++) {
+                    <span class="keyword">print</span>(i)
+                    }
             </div>
         </div>
 
         <div class="section" id="types-of-loops">
             <h2>Types of Loops</h2>
-            
+
             <div class="tab-container">
                 <div class="tab-buttons">
                     <button class="tab-button active" onclick="openTab(event, 'for-tab')">For Loop</button>
                     <button class="tab-button" onclick="openTab(event, 'while-tab')">While Loop</button>
                     <button class="tab-button" onclick="openTab(event, 'do-while-tab')">Do-While Loop</button>
                 </div>
-                
+
                 <div id="for-tab" class="tab-content active">
                     <h4>For Loop</h4>
                     <p><strong>Use when:</strong> You know how many times to repeat</p>
                     <div class="code-block">
-<span class="keyword">for</span> (i = <span class="number">0</span>; i < <span class="number">5</span>; i++) {
-    <span class="keyword">print</span>(i)
-}
+                        <span class="keyword">for</span> (i = <span class="number">0</span>; i < <span class="number">
+                            5</span>; i++) {
+                            <span class="keyword">print</span>(i)
+                            }
                     </div>
                     <p><strong>Output:</strong> 0, 1, 2, 3, 4</p>
-                    
+
                     <div class="interactive-demo">
                         <h3>Interactive For Loop Demo</h3>
                         <div class="controls">
@@ -517,18 +581,18 @@
                         <div id="forVisual" class="visual-loop"></div>
                     </div>
                 </div>
-                
+
                 <div id="while-tab" class="tab-content">
                     <h4>While Loop</h4>
                     <p><strong>Use when:</strong> You repeat based on a condition</p>
                     <div class="code-block">
-<span class="keyword">while</span> (count < <span class="number">5</span>) {
-    <span class="keyword">print</span>(count)
-    count++
-}
+                        <span class="keyword">while</span> (count < <span class="number">5</span>) {
+                            <span class="keyword">print</span>(count)
+                            count++
+                            }
                     </div>
                     <p><strong>Output:</strong> 0, 1, 2, 3, 4</p>
-                    
+
                     <div class="interactive-demo">
                         <h3>Interactive While Loop Demo</h3>
                         <div class="controls">
@@ -543,18 +607,18 @@
                         <div id="whileVisual" class="visual-loop"></div>
                     </div>
                 </div>
-                
+
                 <div id="do-while-tab" class="tab-content">
                     <h4>Do-While Loop</h4>
                     <p><strong>Use when:</strong> Execute at least once, then check condition</p>
                     <div class="code-block">
-<span class="keyword">do</span> {
-    <span class="keyword">print</span>(count)
-    count++
-} <span class="keyword">while</span> (count < <span class="number">5</span>)
+                        <span class="keyword">do</span> {
+                        <span class="keyword">print</span>(count)
+                        count++
+                        } <span class="keyword">while</span> (count < <span class="number">5</span>)
                     </div>
                     <p><strong>Output:</strong> 0, 1, 2, 3, 4</p>
-                    
+
                     <div class="interactive-demo">
                         <h3>Interactive Do-While Loop Demo</h3>
                         <div class="controls">
@@ -574,17 +638,18 @@
 
         <div class="section" id="loop-control">
             <h2>Loop Control Statements</h2>
-            
+
             <h3>1. Break Statement</h3>
             <p>Exits the loop immediately, even if the loop condition is still true.</p>
             <div class="code-block">
-<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">10</span>; i++) {
-    <span class="keyword">if</span> (i == <span class="number">5</span>) {
-        <span class="keyword">break</span>  <span class="comment">// Stop when i equals 5</span>
-    }
-    <span class="keyword">print</span>(i)
-}
-<span class="comment">// Output: 1, 2, 3, 4</span>
+                <span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">
+                    10</span>; i++) {
+                    <span class="keyword">if</span> (i == <span class="number">5</span>) {
+                    <span class="keyword">break</span> <span class="comment">// Stop when i equals 5</span>
+                    }
+                    <span class="keyword">print</span>(i)
+                    }
+                    <span class="comment">// Output: 1, 2, 3, 4</span>
             </div>
 
             <div class="interactive-demo">
@@ -600,13 +665,14 @@
             <h3>2. Continue Statement</h3>
             <p>Skips the current iteration and moves to the next one.</p>
             <div class="code-block">
-<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">5</span>; i++) {
-    <span class="keyword">if</span> (i == <span class="number">3</span>) {
-        <span class="keyword">continue</span>  <span class="comment">// Skip when i equals 3</span>
-    }
-    <span class="keyword">print</span>(i)
-}
-<span class="comment">// Output: 1, 2, 4, 5 (3 is skipped)</span>
+                <span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">5</span>;
+                    i++) {
+                    <span class="keyword">if</span> (i == <span class="number">3</span>) {
+                    <span class="keyword">continue</span> <span class="comment">// Skip when i equals 3</span>
+                    }
+                    <span class="keyword">print</span>(i)
+                    }
+                    <span class="comment">// Output: 1, 2, 4, 5 (3 is skipped)</span>
             </div>
 
             <div class="interactive-demo">
@@ -623,13 +689,15 @@
         <div class="section" id="nested-loops">
             <h2>Nested Loops</h2>
             <p>A loop inside another loop! Useful for working with multi-dimensional data or creating patterns.</p>
-            
+
             <div class="code-block">
-<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">3</span>; i++) {          <span class="comment">// Outer loop</span>
-    <span class="keyword">for</span> (j = <span class="number">1</span>; j <= <span class="number">3</span>; j++) {      <span class="comment">// Inner loop</span>
-        <span class="keyword">print</span>(i + <span class="string">","</span> + j)
-    }
-}
+                <span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">3</span>;
+                    i++) { <span class="comment">// Outer loop</span>
+                    <span class="keyword">for</span> (j = <span class="number">1</span>; j <= <span class="number">
+                        3</span>; j++) { <span class="comment">// Inner loop</span>
+                        <span class="keyword">print</span>(i + <span class="string">","</span> + j)
+                        }
+                        }
             </div>
 
             <div class="interactive-demo">
@@ -647,23 +715,25 @@
 
         <div class="section" id="real-world-examples">
             <h2>Real-World Examples</h2>
-            
+
             <h3>Example 1: Calculate Sum of Numbers</h3>
             <div class="code-block">
-sum = <span class="number">0</span>
-<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">100</span>; i++) {
-    sum = sum + i
-}
-<span class="keyword">print</span>(<span class="string">"Sum: "</span> + sum)
-<span class="comment">// Output: Sum: 5050</span>
+                sum = <span class="number">0</span>
+                <span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">
+                    100</span>; i++) {
+                    sum = sum + i
+                    }
+                    <span class="keyword">print</span>(<span class="string">"Sum: "</span> + sum)
+                    <span class="comment">// Output: Sum: 5050</span>
             </div>
 
             <h3>Example 2: Print Even Numbers</h3>
             <div class="code-block">
-<span class="keyword">for</span> (i = <span class="number">2</span>; i <= <span class="number">20</span>; i = i + <span class="number">2</span>) {
-    <span class="keyword">print</span>(i)
-}
-<span class="comment">// Output: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20</span>
+                <span class="keyword">for</span> (i = <span class="number">2</span>; i <= <span class="number">
+                    20</span>; i = i + <span class="number">2</span>) {
+                    <span class="keyword">print</span>(i)
+                    }
+                    <span class="comment">// Output: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20</span>
             </div>
 
             <div class="interactive-demo">
@@ -679,7 +749,7 @@ sum = <span class="number">0</span>
 
         <div class="section" id="common-patterns">
             <h2>Common Loop Patterns</h2>
-            
+
             <div class="interactive-demo">
                 <h3>Interactive Pattern Explorer</h3>
                 <div class="controls">
@@ -693,74 +763,86 @@ sum = <span class="number">0</span>
 
         <div class="section" id="quiz-section">
             <h2>Test Your Knowledge</h2>
-            
+
             <div class="quiz-container">
                 <div class="quiz-question" id="quizQuestion">What will be the output of the following code?<br>
                     <div class="code-block" style="font-size: 1em;">
-<span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">5</span>; i++) {<br>
-&nbsp;&nbsp;<span class="keyword">if</span> (i == <span class="number">3</span>) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">continue</span>;<br>
-&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;<span class="keyword">print</span>(i);<br>
-}
+                        <span class="keyword">for</span> (i = <span class="number">1</span>; i <= <span class="number">
+                            5</span>; i++) {<br>
+                            &nbsp;&nbsp;<span class="keyword">if</span> (i == <span class="number">3</span>) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">continue</span>;<br>
+                            &nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;<span class="keyword">print</span>(i);<br>
+                            }
                     </div>
                 </div>
-                
+
                 <div class="quiz-options">
                     <div class="quiz-option" onclick="selectOption(this)">A) 1, 2, 3, 4, 5</div>
                     <div class="quiz-option" onclick="selectOption(this)">B) 1, 2, 4, 5</div>
                     <div class="quiz-option" onclick="selectOption(this)">C) 1, 2, 3</div>
                     <div class="quiz-option" onclick="selectOption(this)">D) 2, 3, 4, 5</div>
                 </div>
-                
+
                 <div class="quiz-feedback" id="quizFeedback"></div>
-                
+
                 <button onclick="checkAnswer()" style="margin-top: 20px;">✅ Check Answer</button>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="navigation-buttons">
+                <a href="Conditions.html" class="back-button">
+                    ← Back to Conditions
+                </a>
+                <a href="Functions.html" class="next-button">
+                    Next: Functions →
+                </a>
             </div>
         </div>
     </div>
 
+
     <script>
-        
+
         // Tab functionality
         function openTab(evt, tabName) {
             const tabcontent = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].classList.remove("active");
             }
-            
+
             const tabbuttons = document.getElementsByClassName("tab-button");
             for (let i = 0; i < tabbuttons.length; i++) {
                 tabbuttons[i].classList.remove("active");
             }
-            
+
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
-        
+
         // Quiz functionality
         let selectedOption = null;
-        
+
         function selectOption(element) {
             const options = document.getElementsByClassName("quiz-option");
             for (let i = 0; i < options.length; i++) {
                 options[i].classList.remove("selected");
             }
-            
+
             element.classList.add("selected");
             selectedOption = element;
         }
-        
+
         function checkAnswer() {
             const feedback = document.getElementById("quizFeedback");
-            
+
             if (!selectedOption) {
                 feedback.textContent = "Please select an answer!";
                 feedback.className = "quiz-feedback incorrect";
                 feedback.style.display = "block";
                 return;
             }
-            
+
             if (selectedOption.textContent.includes("B) 1, 2, 4, 5")) {
                 feedback.textContent = "Correct! The continue statement skips the iteration when i equals 3.";
                 feedback.className = "quiz-feedback correct";
@@ -768,10 +850,10 @@ sum = <span class="number">0</span>
                 feedback.textContent = "Incorrect. Remember that 'continue' skips the current iteration.";
                 feedback.className = "quiz-feedback incorrect";
             }
-            
+
             feedback.style.display = "block";
         }
-        
+
         // Interactive demos
         function runForLoop() {
             const start = parseInt(document.getElementById('forStart').value);
@@ -779,10 +861,10 @@ sum = <span class="number">0</span>
             const step = parseInt(document.getElementById('forStep').value);
             const output = document.getElementById('forOutput');
             const visual = document.getElementById('forVisual');
-            
+
             let result = '<strong>For Loop Output:</strong><br>';
             visual.innerHTML = '';
-            
+
             let count = 0;
             for (let i = start; i <= end; i += step) {
                 result += i + ' ';
@@ -794,7 +876,7 @@ sum = <span class="number">0</span>
                 }, count * 200);
                 count++;
             }
-            
+
             output.innerHTML = result;
         }
 
@@ -808,10 +890,10 @@ sum = <span class="number">0</span>
             const condition = parseInt(document.getElementById('whileCondition').value);
             const output = document.getElementById('whileOutput');
             const visual = document.getElementById('whileVisual');
-            
+
             let result = '<strong>While Loop Output:</strong><br>';
             visual.innerHTML = '';
-            
+
             let i = start;
             let count = 0;
             while (i <= condition) {
@@ -826,7 +908,7 @@ sum = <span class="number">0</span>
                 count++;
                 i++;
             }
-            
+
             output.innerHTML = result;
         }
 
@@ -834,19 +916,19 @@ sum = <span class="number">0</span>
             document.getElementById('whileOutput').innerHTML = '';
             document.getElementById('whileVisual').innerHTML = '';
         }
-        
+
         function runDoWhileLoop() {
             const start = parseInt(document.getElementById('doWhileStart').value);
             const condition = parseInt(document.getElementById('doWhileCondition').value);
             const output = document.getElementById('doWhileOutput');
             const visual = document.getElementById('doWhileVisual');
-            
+
             let result = '<strong>Do-While Loop Output:</strong><br>';
             visual.innerHTML = '';
-            
+
             let i = start;
             let count = 0;
-            
+
             do {
                 result += i + ' ';
                 const currentValue = i;
@@ -859,7 +941,7 @@ sum = <span class="number">0</span>
                 count++;
                 i++;
             } while (i <= condition);
-            
+
             output.innerHTML = result;
         }
 
@@ -872,10 +954,10 @@ sum = <span class="number">0</span>
             const breakAt = parseInt(document.getElementById('breakAt').value);
             const output = document.getElementById('breakOutput');
             const visual = document.getElementById('breakVisual');
-            
+
             let result = '<strong>Break Demo (stopping at ' + breakAt + '):</strong><br>';
             visual.innerHTML = '';
-            
+
             let count = 0;
             for (let i = 1; i <= 10; i++) {
                 if (i === breakAt) {
@@ -891,7 +973,7 @@ sum = <span class="number">0</span>
                 }, count * 200);
                 count++;
             }
-            
+
             output.innerHTML = result;
         }
 
@@ -899,10 +981,10 @@ sum = <span class="number">0</span>
             const skipNum = parseInt(document.getElementById('skipNum').value);
             const output = document.getElementById('continueOutput');
             const visual = document.getElementById('continueVisual');
-            
+
             let result = '<strong>Continue Demo (skipping ' + skipNum + '):</strong><br>';
             visual.innerHTML = '';
-            
+
             let count = 0;
             for (let i = 1; i <= 10; i++) {
                 if (i === skipNum) {
@@ -918,7 +1000,7 @@ sum = <span class="number">0</span>
                 }, count * 200);
                 count++;
             }
-            
+
             output.innerHTML = result;
         }
 
@@ -926,10 +1008,10 @@ sum = <span class="number">0</span>
             const rows = parseInt(document.getElementById('rows').value);
             const cols = parseInt(document.getElementById('cols').value);
             const pattern = document.getElementById('patternOutput');
-            
+
             pattern.innerHTML = '';
             pattern.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-            
+
             let count = 0;
             for (let i = 0; i < rows; i++) {
                 for (let j = 0; j < cols; j++) {
@@ -947,14 +1029,14 @@ sum = <span class="number">0</span>
         function calculateSum() {
             const upTo = parseInt(document.getElementById('sumUpTo').value);
             const output = document.getElementById('sumOutput');
-            
+
             let sum = 0;
             let calculation = '<strong>Calculating sum from 1 to ' + upTo + ':</strong><br><br>';
-            
+
             for (let i = 1; i <= upTo; i++) {
                 sum += i;
             }
-            
+
             calculation += '1 + 2 + 3 + ... + ' + upTo + ' = <span style="color: #667eea; font-size: 1.5em; font-weight: bold;">' + sum + '</span>';
             output.innerHTML = calculation;
         }
@@ -964,12 +1046,12 @@ sum = <span class="number">0</span>
             const output = document.getElementById('patternDemo');
             let table = '<strong>Multiplication Table (5 x 5):</strong><br><br>';
             table += '<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;">';
-            
+
             table += '<div style="font-weight: bold;">×</div>';
             for (let i = 1; i <= 5; i++) {
                 table += '<div style="font-weight: bold; color: #667eea;">' + i + '</div>';
             }
-            
+
             for (let i = 1; i <= 5; i++) {
                 table += '<div style="font-weight: bold; color: #667eea;">' + i + '</div>';
                 for (let j = 1; j <= 5; j++) {
@@ -983,14 +1065,14 @@ sum = <span class="number">0</span>
         function showCountdown() {
             const output = document.getElementById('patternDemo');
             output.innerHTML = '<strong>Countdown from 10:</strong><br><br><div id="countdownNumbers"></div>';
-            
+
             const countdownDiv = document.getElementById('countdownNumbers');
             let num = 10;
-            
+
             const interval = setInterval(() => {
                 countdownDiv.innerHTML = '<div style="font-size: 3em; color: #667eea; font-weight: bold;">' + num + '</div>';
                 num--;
-                
+
                 if (num < 0) {
                     clearInterval(interval);
                     countdownDiv.innerHTML += '<div style="font-size: 2em; color: #764ba2; font-weight: bold; margin-top: 20px;">🚀 BLAST OFF!</div>';
@@ -1003,17 +1085,18 @@ sum = <span class="number">0</span>
             const n = 6;
             let factorial = 1;
             let calculation = '<strong>Calculating ' + n + '! (factorial):</strong><br><br>';
-            
+
             calculation += n + '! = ';
             for (let i = n; i >= 1; i--) {
                 calculation += i;
                 if (i > 1) calculation += ' × ';
                 factorial *= i;
             }
-            
+
             calculation += ' = <span style="color: #667eea; font-size: 1.5em; font-weight: bold;">' + factorial + '</span>';
             output.innerHTML = calculation;
         }
     </script>
 </body>
+
 </html>

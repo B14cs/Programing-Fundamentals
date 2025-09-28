@@ -184,6 +184,53 @@
             transform: translateY(0);
         }
 
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+        }
+
+        .next-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-left: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        .next-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
         .code-block {
             background: #2d2d2d;
             color: #f8f8f2;
@@ -812,6 +859,15 @@
                 min-width: 150px;
                 padding: 10px 15px;
             }
+
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .next-button {
+                margin-left: 0;
+            }
         }
 
         /* Output Cards Styles */
@@ -1434,6 +1490,16 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="navigation-buttons">
+            <a href="Loops.html" class="back-button">
+                ← Back to Loops
+            </a>
+            <a href="index.html" class="next-button">
+                Go to Learning Hub →
+            </a>
         </div>
     </div>
 

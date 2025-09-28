@@ -23,58 +23,34 @@
             overflow: hidden;
         }
 
-        @media (max-width: 768px) {
-            body {
-                overflow-y: auto;
-                align-items: flex-start;
-                padding: 20px 15px;
-            }
-        }
-
         .container {
-            max-width: 1600px;
+            max-width: 1400px;
             width: 100%;
-            text-align: center;
+            height: 95vh;
+            max-height: 850px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            animation: fadeIn 1.2s ease-out;
         }
 
         h1 {
             font-size: 3em;
             font-weight: 800;
             color: white;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             animation: fadeIn 0.8s ease-out;
         }
 
-        .lessons-section h2 {
-            font-size: 2em;
-            color: white;
-            margin-bottom: 50px;
-            font-weight: 700;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .content-wrapper {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            animation: fadeIn 1.2s ease-out;
-        }
-
-        .lessons-left,
-        .lessons-right {
+        .qr-section {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 30px;
-        }
-
-        .qr-section {
-            display: flex;
             align-items: center;
             justify-content: center;
+            height: 100%;
         }
 
         .qr-code {
@@ -84,6 +60,8 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             border: 5px solid rgba(255, 255, 255, 0.3);
             transition: all 0.4s ease;
+            max-width: 650px;
+            width: 100%;
         }
 
         .qr-code:hover {
@@ -93,17 +71,40 @@
 
         .qr-code img {
             display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .lessons-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .lessons-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+            max-width: 500px;
         }
 
         .lesson-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 35px 25px;
+            padding: 30px 25px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
             border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            height: 100%;
         }
 
         .lesson-card:hover {
@@ -112,25 +113,25 @@
             border-color: white;
         }
 
-        .lessons-right .lesson-card:hover {
-            transform: translateX(10px);
-        }
-
         .lesson-icon {
-            font-size: 4em;
-            margin-bottom: 20px;
-            display: block;
+            font-size: 3.5em;
+            margin-right: 25px;
             transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
         .lesson-card:hover .lesson-icon {
             transform: scale(1.2) rotate(5deg);
         }
 
+        .lesson-content {
+            flex: 1;
+        }
+
         .lesson-card h3 {
             color: #667eea;
             font-size: 1.6em;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             font-weight: 700;
         }
 
@@ -153,75 +154,62 @@
         }
 
         @media (max-width: 1200px) {
-            .content-wrapper {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            .container {
+                flex-direction: column;
+                height: auto;
+                max-height: none;
+                gap: 30px;
             }
 
-            .lessons-left,
-            .lessons-right {
-                flex-direction: row;
-                gap: 20px;
+            .qr-section,
+            .lessons-section {
+                width: 100%;
+                max-width: 700px;
             }
 
-            .lesson-card {
-                flex: 1;
+            .qr-code {
+                max-width: 400px;
             }
 
-            .lessons-right .lesson-card:hover {
-                transform: translateX(-10px);
+            .lessons-column {
+                max-width: 600px;
             }
         }
 
         @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                align-items: flex-start;
+                padding: 20px 15px;
+            }
+
             .container {
+                height: auto;
+                min-height: 100vh;
                 padding: 20px 0;
             }
 
             h1 {
                 font-size: 2em;
-                margin-bottom: 30px;
-            }
-
-            .lessons-section h2 {
-                font-size: 1.5em;
-                margin-bottom: 30px;
-            }
-
-            .content-wrapper {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .lessons-left,
-            .lessons-right {
-                flex-direction: column;
-                gap: 15px;
-                order: 1;
-            }
-
-            .qr-section {
-                order: 2;
-                margin-top: 20px;
+                margin-bottom: 25px;
             }
 
             .qr-code {
                 padding: 20px;
+                max-width: 300px;
             }
 
-            .qr-code img {
-                width: 280px !important;
-                height: 280px !important;
+            .lessons-column {
+                gap: 15px;
             }
 
             .lesson-card {
-                padding: 25px 15px;
+                padding: 20px 15px;
             }
 
             .lesson-icon {
-                font-size: 3em;
+                font-size: 2.5em;
+                margin-right: 15px;
             }
 
             .lesson-card h3 {
@@ -233,40 +221,51 @@
 
 <body>
     <div class="container">
-        <h1>📚 Programming Concepts Learning Hub</h1>
+        <div class="qr-section">
+            <h1 style="text-align: center;">📚 Programming Concepts Learning Hub</h1>
+            <div class="qr-code">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https://b14cs.github.io/Programing-Fundamentals/"
+                    alt="QR Code to Programming Fundamentals">
+            </div>
+        </div>
 
         <div class="lessons-section">
-            <div class="content-wrapper">
-                <div class="lessons-left">
-                    <div class="lesson-card" onclick="window.location.href='Variables.html'">
-                        <span class="lesson-icon">📦</span>
+            <div class="lessons-column">
+                <div class="lesson-card" onclick="window.location.href='ProgramExecution.html'">
+                    <span class="lesson-icon">⚙️</span>
+                    <div class="lesson-content">
+                        <h3>Program Execution</h3>
+                        <p>How code runs step by step</p>
+                    </div>
+                </div>
+
+                <div class="lesson-card" onclick="window.location.href='Variables.html'">
+                    <span class="lesson-icon">📦</span>
+                    <div class="lesson-content">
                         <h3>Variables</h3>
                         <p>Store and manipulate data</p>
                     </div>
+                </div>
 
-                    <div class="lesson-card" onclick="window.location.href='Conditions.html'">
-                        <span class="lesson-icon">🔀</span>
+                <div class="lesson-card" onclick="window.location.href='Conditions.html'">
+                    <span class="lesson-icon">🔀</span>
+                    <div class="lesson-content">
                         <h3>Conditions</h3>
                         <p>Decision-making in code</p>
                     </div>
                 </div>
 
-                <div class="qr-section">
-                    <div class="qr-code">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://b14cs.github.io/Programing-Fundamentals/"
-                            alt="QR Code to Programming Fundamentals" width="465" height="465">
-                    </div>
-                </div>
-
-                <div class="lessons-right">
-                    <div class="lesson-card" onclick="window.location.href='Loops.html'">
-                        <span class="lesson-icon">🔄</span>
+                <div class="lesson-card" onclick="window.location.href='Loops.html'">
+                    <span class="lesson-icon">🔄</span>
+                    <div class="lesson-content">
                         <h3>Loops</h3>
                         <p>Repeat actions efficiently</p>
                     </div>
+                </div>
 
-                    <div class="lesson-card" onclick="window.location.href='Functions.html'">
-                        <span class="lesson-icon">📜</span>
+                <div class="lesson-card" onclick="window.location.href='Functions.html'">
+                    <span class="lesson-icon">📜</span>
+                    <div class="lesson-content">
                         <h3>Functions</h3>
                         <p>Reusable code blocks</p>
                     </div>
