@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Concepts Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.5em;
+            color: #666;
+            margin-bottom: 40px;
+            font-weight: 500;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 900px) {
+            .content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .qr-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px dashed #667eea;
+        }
+
+        .qr-code {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .qr-instructions {
+            font-size: 1.2em;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .qr-instructions ol {
+            text-align: left;
+            margin: 20px auto;
+            max-width: 300px;
+        }
+
+        .qr-instructions li {
+            margin-bottom: 10px;
+        }
+
+        .lessons-section {
+            text-align: left;
+        }
+
+        .lesson-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .lesson-card h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .lesson-card h3 .emoji {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .lesson-card p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .lesson-card .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .lesson-card .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+            color: #666;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .url-display {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            word-break: break-all;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Programming Concepts Learning Hub</h1>
+        <p class="subtitle">Interactive educational materials for first-year programming students. Scan the QR code to access these resources on your device!</p>
+        
+        <div class="content">
+            <div class="qr-section">
+                <h2>📱 Scan to Access</h2>
+                <div class="qr-code pulse">
+                    <!-- QR Code SVG -->
+                    <svg width="100%" height="100%" viewBox="0 0 100 100">
+                        <!-- QR Code pattern - this is a simplified representation -->
+                        <rect width="100" height="100" fill="white"/>
+                        <!-- Outer border -->
+                        <rect x="5" y="5" width="90" height="90" fill="none" stroke="#667eea" stroke-width="2"/>
+                        <!-- QR code patterns (simplified) -->
+                        <rect x="10" y="10" width="20" height="20" fill="#333"/>
+                        <rect x="70" y="10" width="20" height="20" fill="#333"/>
+                        <rect x="10" y="70" width="20" height="20" fill="#333"/>
+                        
+                        <!-- Data patterns -->
+                        <rect x="35" y="10" width="5" height="5" fill="#333"/>
+                        <rect x="45" y="10" width="5" height="5" fill="#333"/>
+                        <rect x="60" y="15" width="5" height="5" fill="#333"/>
+                        <rect x="15" y="35" width="5" height="5" fill="#333"/>
+                        <rect x="25" y="40" width="5" height="5" fill="#333"/>
+                        <rect x="50" y="45" width="5" height="5" fill="#333"/>
+                        <rect x="70" y="50" width="5" height="5" fill="#333"/>
+                        <rect x="35" y="60" width="5" height="5" fill="#333"/>
+                        <rect x="55" y="65" width="5" height="5" fill="#333"/>
+                        <rect x="75" y="70" width="5" height="5" fill="#333"/>
+                        <rect x="20" y="80" width="5" height="5" fill="#333"/>
+                        <rect x="40" y="85" width="5" height="5" fill="#333"/>
+                        
+                        <!-- Center logo area -->
+                        <circle cx="50" cy="50" r="10" fill="#667eea"/>
+                        <circle cx="50" cy="50" r="6" fill="white"/>
+                        <circle cx="50" cy="50" r="3" fill="#667eea"/>
+                    </svg>
+                </div>
+                
+                <div class="url-display">
+                    https://github.com/B14cs/FMCS40-Tracker
+                </div>
+                
+                <div class="qr-instructions">
+                    <h3>How to use:</h3>
+                    <ol>
+                        <li>Open your phone's camera or QR scanner app</li>
+                        <li>Point it at the QR code above</li>
+                        <li>Tap the notification to open the website</li>
+                        <li>Bookmark the page for easy access</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="lessons-section">
+                <h2>🎓 Available Lessons</h2>
+                
+                <div class="lesson-card" onclick="window.location.href='Variables.html'">
+                    <h3><span class="emoji">📦</span> Understanding Variables</h3>
+                    <p>Learn how to store and manipulate data using variables - the fundamental building blocks of programming.</p>
+                    <a href="Variables.html" class="btn">Open Lesson</a>
+                </div>
+                
+                <div class="lesson-card" onclick="window.location.href='Conditions.html'">
+                    <h3><span class="emoji">🔀</span> Understanding Conditions</h3>
+                    <p>Master decision-making in code with conditional statements like if, else if, and else.</p>
+                    <a href="Condtions.html" class="btn">Open Lesson</a>
+                </div>
+                
+                <div class="lesson-card" onclick="window.location.href='Loops.html'">
+                    <h3><span class="emoji">🔄</span> Loops & Iteration</h3>
+                    <p>Discover how to repeat actions efficiently using different types of loops.</p>
+                    <a href="Loops.html" class="btn">Open Lesson</a>
+                </div>
+                
+                <div class="lesson-card" onclick="window.location.href='Functions.html'">
+                    <h3><span class="emoji">📜</span> Functions (Coming Soon)</h3>
+                    <p>Learn to organize your code into reusable blocks with functions.</p>
+                    <a href="Functions.html" class="btn">Open Lesson</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="icon">🎮</div>
+                <h3>Interactive Learning</h3>
+                <p>Hands-on examples and exercises to reinforce programming concepts.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="icon">👨‍🏫</div>
+                <h3>Classroom Ready</h3>
+                <p>Designed for projector display with clear visuals and explanations.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="icon">📱</div>
+                <h3>Mobile Friendly</h3>
+                <p>Accessible on all devices with responsive design.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="icon">💡</div>
+                <h3>Concept Focused</h3>
+                <p>Clear explanations of fundamental programming principles.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Created for First-Year Programming Students | Programming Concepts Learning Hub</p>
+            <p>Use the QR code to quickly access these resources on your personal device during class.</p>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for QR code
+        document.querySelector('.qr-code').addEventListener('mouseover', function() {
+            this.classList.remove('pulse');
+        });
+        
+        document.querySelector('.qr-code').addEventListener('mouseout', function() {
+            this.classList.add('pulse');
+        });
+        
+        // Update URL display with current page location
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlDisplay = document.querySelector('.url-display');
+            urlDisplay.textContent = window.location.href.replace('index.html', '');
+        });
+    </script>
+</body>
+</html>

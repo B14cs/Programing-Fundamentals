@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Understanding Functions</title>
+    <title>Understanding Functions - Enhanced Scope Visualization</title>
     <style>
         * {
             margin: 0;
@@ -26,7 +27,7 @@
             background: white;
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             position: relative;
         }
 
@@ -36,7 +37,7 @@
             margin-bottom: 15px;
             text-align: center;
             animation: fadeIn 0.8s ease-in;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .subtitle {
@@ -55,7 +56,7 @@
             border-left: 6px solid #4facfe;
             font-size: 1.3em;
             line-height: 1.8;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .interactive-section {
@@ -104,13 +105,13 @@
             background: white;
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
         .box-container:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .function-box {
@@ -142,7 +143,8 @@
             animation: pulse 2s ease-in-out infinite;
         }
 
-        input[type="text"], input[type="number"] {
+        input[type="text"],
+        input[type="number"] {
             padding: 15px 20px;
             font-size: 1.2em;
             border: 3px solid #4facfe;
@@ -191,7 +193,7 @@
             font-size: 1.2em;
             line-height: 1.8;
             margin: 20px 0;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
             overflow-x: auto;
         }
 
@@ -215,6 +217,10 @@
             color: #50fa7b;
         }
 
+        .variable {
+            color: #8be9fd;
+        }
+
         .types-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -227,7 +233,7 @@
             padding: 25px;
             border-radius: 12px;
             border-top: 5px solid #4facfe;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
@@ -236,7 +242,7 @@
 
         .type-card:hover {
             transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         .type-card h3 {
@@ -257,13 +263,29 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
         }
 
         .button-group {
@@ -318,7 +340,7 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             position: relative;
             padding: 15px;
         }
@@ -348,7 +370,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.85);
+            background-color: rgba(0, 0, 0, 0.85);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -363,7 +385,7 @@
             width: 90%;
             max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             position: relative;
             border: 5px solid #4facfe;
         }
@@ -383,7 +405,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .close-modal:hover {
@@ -409,7 +431,7 @@
             font-size: 1.4em;
             line-height: 1.8;
             margin: 20px 0;
-            box-shadow: inset 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.5);
             overflow-x: auto;
         }
 
@@ -432,23 +454,304 @@
             margin-bottom: 20px;
         }
 
+        /* Enhanced Nested Scope Visualization */
+        .scope-visualization {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+            gap: 20px;
+        }
+
+        .scope-container {
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .scope-box {
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin: 15px;
+        }
+
+        .scope-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .scope-box.global {
+            border: 4px solid #4facfe;
+            background: linear-gradient(135deg, #e3f2fd 100%, #bbdefb 0%);
+            min-height: 400px;
+            width: 100%;
+        }
+
+        .scope-box.function {
+            border: 3px solid #00f2fe;
+            background: linear-gradient(135deg, #e0f2f1 100%, #b2dfdb 0%);
+            min-height: 300px;
+            width: 85%;
+            margin: 20px auto;
+        }
+
+        .scope-box.block {
+            border: 2px solid #ff9800;
+            background: linear-gradient(135deg, #fff3e0 100%, #ffe0b2 0%);
+            min-height: 200px;
+            width: 75%;
+            margin: 15px auto;
+        }
+
+        .scope-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scope-title.global::before {
+            content: "🌍";
+        }
+
+        .scope-title.function::before {
+            content: "⚙️";
+        }
+
+        .scope-title.block::before {
+            content: "🔲";
+        }
+
+        .scope-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .variable-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            min-width: 180px;
+        }
+
+        .variable-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .variable-name {
+            font-weight: bold;
+            color: #4facfe;
+            font-size: 1.1em;
+        }
+
+        .variable-value {
+            color: #00f2fe;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .scope-explanation {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid #ff9800;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .scope-explanation h3 {
+            color: #ff9800;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .scope-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .legend-color.global {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: 2px solid #4facfe;
+        }
+
+        .legend-color.function {
+            background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+            border: 2px solid #00f2fe;
+        }
+
+        .legend-color.block {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 2px solid #ff9800;
+        }
+
+        .scope-note {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 1em;
+            border-left: 4px solid #4caf50;
+        }
+
+        /* Scope Access Rules */
+        .scope-access-rules {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .access-rule {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .access-direction {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: left;
+        }
+
+        .access-from {
+            width: 10em;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 2px solid;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .access-from.block-scope {
+            color: #ffffff;
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            border-color: #e65100;
+        }
+
+        .access-from.function-scope {
+            color: #ffffff;
+            background: linear-gradient(135deg, #00f2fe 0%, #00bcd4 100%);
+            border-color: #00838f;
+        }
+
+        .access-from.global-scope {
+            color: #ffffff;
+            background: linear-gradient(135deg, #4facfe 0%, #2196f3 100%);
+            border-color: #1565c0;
+        }
+
+        .access-arrow {
+            font-size: 5em;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .access-to {
+            width: 20em;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 2px solid;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .access-to.block-access {
+            color: #2e7d32;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-color: #4caf50;
+        }
+
+        .access-to.function-access {
+            color: #00695c;
+            background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+            border-color: #009688;
+        }
+
+        .access-to.global-access {
+            color: #0d47a1;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-color: #2196f3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .access-direction {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .access-arrow {
+                transform: rotate(90deg);
+            }
+
+            .access-from,
+            .access-to {
+                font-size: 1em;
+                padding: 6px 12px;
+            }
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5em;
             }
-            
+
             .subtitle {
                 font-size: 1.2em;
             }
-            
+
             .container {
                 padding: 20px;
             }
-            
+
             .interactive-section {
                 padding: 20px;
             }
-            
+
             .section-title {
                 font-size: 2em;
             }
@@ -456,31 +759,240 @@
             .compact-button-group {
                 grid-template-columns: 1fr;
             }
-            
+
             .function-visual {
                 flex-direction: column;
                 gap: 20px;
             }
-            
+
             .modal-content {
                 padding: 25px;
             }
-            
+
             .modal-title {
                 font-size: 2.2em;
             }
-            
+
             .modal-code {
                 font-size: 1.2em;
                 padding: 20px;
             }
-            
+
             .function-description {
                 font-size: 1.2em;
+            }
+
+            .scope-container {
+                flex-direction: column;
+            }
+
+            .scope-box {
+                min-height: 150px;
+            }
+
+            .scope-box.global {
+                min-height: 350px;
+            }
+
+            .scope-box.function {
+                min-height: 250px;
+                width: 90%;
+            }
+
+            .scope-box.block {
+                min-height: 180px;
+                width: 85%;
+            }
+
+            .scope-title {
+                font-size: 1.5em;
+            }
+
+            .variable-item {
+                min-width: 150px;
+                padding: 10px 15px;
+            }
+        }
+
+        /* Output Cards Styles */
+        .output-cards-container {
+            margin-top: 20px;
+        }
+
+        .output-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin: 20px 0;
+            border-left: 5px solid #4facfe;
+            overflow: hidden;
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        .output-card.hidden {
+            display: none;
+        }
+
+        .output-card-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .output-card-header h3 {
+            margin: 0;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .output-card-content {
+            padding: 25px;
+        }
+
+        .console-output {
+            background: #2d2d2d;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .console-line {
+            padding: 5px 0;
+            border-left: 3px solid transparent;
+            padding-left: 10px;
+        }
+
+        .console-line.success {
+            color: #50fa7b;
+            border-left-color: #50fa7b;
+        }
+
+        .output-note {
+            background: #fff9c4;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffd600;
+            font-size: 1em;
+        }
+
+        .rules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .rule-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .rule-number {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+
+        .rule-content {
+            flex: 1;
+        }
+
+        .rule-content strong {
+            color: #4facfe;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .rule-content ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        .rule-content li {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .key-principle {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #4caf50;
+            margin-top: 20px;
+        }
+
+        .key-principle strong {
+            color: #2e7d32;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .key-principle p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .output-card-header {
+                padding: 15px;
+            }
+
+            .output-card-header h3 {
+                font-size: 1.2em;
+            }
+
+            .output-card-content {
+                padding: 20px;
+            }
+
+            .console-output {
+                font-size: 1em;
+                padding: 15px;
+            }
+
+            .rule-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .rule-number {
+                align-self: flex-start;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>⚙️ Understanding Functions</h1>
@@ -488,8 +1000,12 @@
 
         <div class="concept-box">
             <strong>What are Functions?</strong><br>
-            Functions are reusable blocks of code that perform a specific task. Think of them as machines: you put something in (input), the machine does its work, and you get something out (output). Functions help you avoid repeating code and make your programs more organized.
+            Functions are reusable blocks of code that perform a specific task. Think of them as machines: you put
+            something in (input), the machine does its work, and you get something out (output). Functions help you
+            avoid repeating code and make your programs more organized.
         </div>
+
+        <br>
 
         <div class="function-visual">
             <div class="machine-box">
@@ -520,7 +1036,9 @@
                     <h3 style="color: #4facfe; margin-bottom: 20px;">Function Definition</h3>
                     <input type="text" id="funcName" placeholder="Function name (e.g., greet)" value="greet">
                     <button onclick="createFunction()" style="width: 100%;">Create Function</button>
-                    <button onclick="callFunction()" style="width: 100%; background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);">Call Function</button>
+                    <button onclick="callFunction()"
+                        style="width: 100%; background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);">Call
+                        Function</button>
                 </div>
                 <div class="box-container">
                     <h3 style="color: #4facfe; margin-bottom: 20px;">Function Output</h3>
@@ -566,7 +1084,8 @@
                         }<br>
                         <br>
                         <span class="comment">// Call with arguments</span><br>
-                        <span class="keyword">let</span> result = <span class="function">add</span>(<span class="number">10</span>, <span class="number">5</span>);
+                        <span class="keyword">let</span> result = <span class="function">add</span>(<span
+                            class="number">10</span>, <span class="number">5</span>);
                     </div>
                 </div>
             </div>
@@ -593,14 +1112,18 @@
                     </div>
                     <div class="code-block" id="checkCode">
                         <span class="keyword">function</span> <span class="function">isEven</span>(num) {<br>
-                        &nbsp;&nbsp;<span class="keyword">if</span> (num % <span class="number">2</span> === <span class="number">0</span>) {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"even"</span>;<br>
+                        &nbsp;&nbsp;<span class="keyword">if</span> (num % <span class="number">2</span> === <span
+                            class="number">0</span>) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span
+                            class="string">"even"</span>;<br>
                         &nbsp;&nbsp;} <span class="keyword">else</span> {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"odd"</span>;<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span
+                            class="string">"odd"</span>;<br>
                         &nbsp;&nbsp;}<br>
                         }<br>
                         <br>
-                        <span class="keyword">let</span> result = <span class="function">isEven</span>(<span class="number">7</span>);
+                        <span class="keyword">let</span> result = <span class="function">isEven</span>(<span
+                            class="number">7</span>);
                     </div>
                 </div>
             </div>
@@ -660,212 +1183,343 @@
         <div class="interactive-section">
             <h2>Try It: Understanding Variable Scope</h2>
             <div class="tip-box">
-                💡 <strong>Tip:</strong> Variables declared inside a function are only accessible within that function
+                💡 <strong>Tip:</strong> Variables declared inside a function are only accessible within that function.
+                Inner scopes can access variables from outer scopes, but not vice versa.
             </div>
-            <div class="demo-grid">
-                <div class="box-container">
-                    <h3 style="color: #4facfe; margin-bottom: 20px;">Scope Demonstration</h3>
-                    <button onclick="demonstrateScope()" style="width: 100%;">Run Scope Demo</button>
-                    <div id="scopeOutput" style="margin-top: 20px; padding: 15px; background: #f5f7fa; border-radius: 8px; min-height: 100px;">
-                        Click the button to see scope in action
+
+            <!-- Scope Legend -->
+            <div class="scope-legend">
+                <div class="legend-item">
+                    <div class="legend-color global"></div>
+                    <span>Global Scope</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color function"></div>
+                    <span>Function Scope</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color block"></div>
+                    <span>Block Scope</span>
+                </div>
+            </div>
+
+            <!-- Nested Scope Visualization -->
+            <div class="scope-visualization">
+                <div class="scope-container">
+                    <!-- Global Scope (Largest) -->
+                    <div class="scope-box global">
+                        <div class="scope-title global">Global Scope</div>
+                        <div class="scope-content" id="globalScopeContent">
+                            <!-- Global variables will be added here by JavaScript -->
+                        </div>
+
+                        <!-- Function Scope (Inside Global) -->
+                        <div class="scope-box function">
+                            <div class="scope-title function">Function Scope</div>
+                            <div class="scope-content" id="functionScopeContent">
+                                <!-- Function variables will be added here by JavaScript -->
+                            </div>
+
+                            <!-- Block Scope (Inside Function) -->
+                            <div class="scope-box block">
+                                <div class="scope-title block">Block Scope</div>
+                                <div class="scope-content" id="blockScopeContent">
+                                    <!-- Block variables will be added here by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="box-container">
-                    <h3 style="color: #4facfe; margin-bottom: 20px;">Scope Code</h3>
-                    <div class="code-block">
-                        <span class="comment">// Global variable</span><br>
-                        <span class="keyword">let</span> globalVar = <span class="string">"I'm global"</span>;<br>
-                        <br>
-                        <span class="keyword">function</span> <span class="function">testScope</span>() {<br>
-                        &nbsp;&nbsp;<span class="comment">// Local variable</span><br>
-                        &nbsp;&nbsp;<span class="keyword">let</span> localVar = <span class="string">"I'm local"</span>;<br>
-                        &nbsp;&nbsp;console.log(globalVar); <span class="comment">// Works</span><br>
-                        &nbsp;&nbsp;console.log(localVar);  <span class="comment">// Works</span><br>
-                        }<br>
-                        <br>
-                        <span class="function">testScope</span>();<br>
-                        console.log(globalVar); <span class="comment">// Works</span><br>
-                        <span class="comment">// console.log(localVar); // Error!</span>
+            </div>
+
+            <!-- Buttons to run/reset the example -->
+            <div class="button-group">
+                <button onclick="runScopeExample()">Run Scope Example</button>
+                <button onclick="resetScopeExample()">Reset Example</button>
+            </div>
+
+            <!-- Explanation of scope rules -->
+            <div class="scope-visualization">
+                <div class="scope-explanation">
+                    <h3>How Scope Works</h3>
+                    <p>JavaScript uses <strong>lexical scoping</strong>, which means the accessibility of variables is
+                        determined by their position in the code structure.</p>
+                    <p><strong>• Global Scope</strong>: Variables declared outside any function or block. Accessible
+                        everywhere.</p>
+                    <p><strong>• Function Scope</strong>: Variables declared inside a function. Accessible only within
+                        that function and any nested blocks.</p>
+                    <p><strong>• Block Scope</strong>: Variables declared with <code>let</code> or
+                        <code>const</code> inside a block (if, for, while, etc.). Accessible only within that block and
+                        any nested blocks.
+                    </p>
+                    <p>Inner scopes can access variables from outer scopes, but outer scopes cannot access variables
+                        from inner scopes.</p>
+                </div>
+
+                <!-- Show accessibility explanation -->
+                <div class="scope-access-rules">
+                    <div class="access-direction">
+                        <span class="access-from block-scope">Block Scope</span>
+                        <span class="access-arrow">→</span>
+                        <span class="access-to block-access">Global, Function, Block</span>
+                    </div>
+                    <div class="access-direction">
+                        <span class="access-from function-scope">Function Scope</span>
+                        <span class="access-arrow">→</span>
+                        <span class="access-to function-access">Global, Function</span>
+                    </div>
+                    <div class="access-direction">
+                        <span class="access-from global-scope">Global Scope</span>
+                        <span class="access-arrow">→</span>
+                        <span class="access-to global-access">Global only</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Interactive Demo: Calculator Functions -->
-         <div class="interactive-section">
-            <h2>Try It: Calculator with Functions</h2>
-            <div class="demo-grid">
-                <div class="box-container">
-                    <h3 style="color: #4facfe; margin-bottom: 20px;">Calculator Inputs</h3>
-                    <input type="number" id="num1" placeholder="First number" value="15">
-                    <input type="number" id="num2" placeholder="Second number" value="3">
-                    <div class="compact-button-group">
-                        <button onclick="calculate('add')">+ Add</button>
-                        <button onclick="calculate('subtract')">- Subtract</button>
-                        <button onclick="calculate('multiply')">× Multiply</button>
-                        <button onclick="calculate('divide')">÷ Divide</button>
+        <!-- Code Example Section -->
+        <div class="interactive-section">
+            <h2>Scope Code Example</h2>
+            <div class="tip-box">
+                💡 <strong>Tip:</strong> This code demonstrates how scope works in JavaScript with global, function, and
+                block scopes
+            </div>
+
+            <div class="code-block">
+                <span class="comment">// Global Scope - accessible everywhere</span><br>
+                <span class="keyword">const</span> <span class="variable">globalVar</span> = <span class="string">"I am
+                    global"</span>;<br>
+                <span class="keyword">const</span> <span class="variable">PI</span> = <span
+                    class="number">3.14159</span>;<br>
+                <span class="keyword">let</span> <span class="variable">counter</span> = <span
+                    class="number">0</span>;<br>
+                <br>
+                <span class="keyword">function</span> <span class="function">myFunction</span>() {<br>
+                &nbsp;&nbsp;<span class="comment">// Function Scope - accessible in function and nested
+                    blocks</span><br>
+                &nbsp;&nbsp;<span class="keyword">const</span> <span class="variable">functionVar</span> = <span
+                    class="string">"I am in function"</span>;<br>
+                &nbsp;&nbsp;<span class="keyword">let</span> <span class="variable">temp</span> = <span
+                    class="number">42</span>;<br>
+                &nbsp;&nbsp;<br>
+                &nbsp;&nbsp;<span class="comment">// Can access global variables here</span><br>
+                &nbsp;&nbsp;<span class="function">console</span>.<span class="function">log</span>(<span
+                    class="variable">globalVar</span>); <span class="comment">// ✅ Works</span><br>
+                &nbsp;&nbsp;<span class="function">console</span>.<span class="function">log</span>(<span
+                    class="variable">PI</span>); <span class="comment">// ✅ Works</span><br>
+                &nbsp;&nbsp;<br>
+                &nbsp;&nbsp;<span class="keyword">if</span> (<span class="keyword">true</span>) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Block Scope - accessible only in this block</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">const</span> <span class="variable">blockVar</span> =
+                <span class="string">"I am in block"</span>;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span> <span class="variable">i</span> = <span
+                    class="number">0</span>;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Can access global, function, and block variables
+                    here</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">console</span>.<span class="function">log</span>(<span
+                    class="variable">globalVar</span>); <span class="comment">// ✅ Works</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">console</span>.<span class="function">log</span>(<span
+                    class="variable">functionVar</span>); <span class="comment">// ✅ Works</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">console</span>.<span class="function">log</span>(<span
+                    class="variable">blockVar</span>); <span class="comment">// ✅ Works</span><br>
+                &nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;<br>
+                &nbsp;&nbsp;<span class="comment">// Can access global and function variables here</span><br>
+                &nbsp;&nbsp;<span class="function">console</span>.<span class="function">log</span>(<span
+                    class="variable">globalVar</span>); <span class="comment">// ✅ Works</span><br>
+                &nbsp;&nbsp;<span class="function">console</span>.<span class="function">log</span>(<span
+                    class="variable">functionVar</span>); <span class="comment">// ✅ Works</span><br>
+                &nbsp;&nbsp;<span class="comment">// console.log(blockVar); // ❌ ERROR - blockVar is not accessible
+                    here</span><br>
+                }<br>
+                <br>
+                <span class="comment">// Global scope - can only access global variables</span><br>
+                <span class="function">console</span>.<span class="function">log</span>(<span
+                    class="variable">globalVar</span>); <span class="comment">// ✅ Works</span><br>
+                <span class="function">console</span>.<span class="function">log</span>(<span
+                    class="variable">PI</span>);
+                <span class="comment">// ✅ Works</span><br>
+                <span class="comment">// console.log(functionVar); // ❌ ERROR - functionVar is not accessible
+                    here</span><br>
+                <span class="comment">// console.log(blockVar); // ❌ ERROR - blockVar is not accessible here</span><br>
+                <br>
+                <span class="comment">// Call the function to see it in action</span><br>
+                <span class="function">myFunction</span>();
+            </div>
+
+            <div class="scope-note" style="margin-top: 15px;">
+                <strong>Remember:</strong> Inner scopes can access variables from outer scopes, but outer scopes
+                cannot access variables from inner scopes. This is called <strong>lexical scoping</strong>.
+            </div>
+
+            <div class="button-group">
+                <button onclick="runCodeExample()">Run This Code</button>
+                <button onclick="explainScopeRules()">Explain Scope Rules</button>
+            </div>
+
+            <!-- Output Cards -->
+            <div class="output-cards-container">
+                <div id="codeOutputCard" class="output-card hidden">
+                    <div class="output-card-header">
+                        <h3>📝 Code Output</h3>
+                    </div>
+                    <div class="output-card-content">
+                        <div class="console-output">
+                            <div class="console-line success">✅ "I am global"</div>
+                            <div class="console-line success">✅ 3.14159</div>
+                            <div class="console-line success">✅ "I am global"</div>
+                            <div class="console-line success">✅ 3.14159</div>
+                            <div class="console-line success">✅ "I am in function"</div>
+                            <div class="console-line success">✅ "I am in block"</div>
+                            <div class="console-line success">✅ "I am global"</div>
+                            <div class="console-line success">✅ "I am in function"</div>
+                            <div class="console-line success">✅ "I am global"</div>
+                            <div class="console-line success">✅ 3.14159</div>
+                        </div>
+                        <div class="output-note">
+                            <strong>Note:</strong> The commented lines would cause ReferenceErrors if uncommented!
+                        </div>
                     </div>
                 </div>
-                <div class="box-container">
-                    <h3 style="color: #4facfe; margin-bottom: 20px;">Calculator Result</h3>
-                    <div class="function-box" id="calcResult">
-                        <div class="function-name">calculator</div>
-                        <div class="function-result">18</div>
+
+                <div id="scopeRulesCard" class="output-card hidden">
+                    <div class="output-card-header">
+                        <h3>📚 Scope Rules Explained</h3>
                     </div>
-                    <div class="code-block" id="calcCode">
-                        <span class="keyword">function</span> <span class="function">add</span>(a, b) {<br>
-                        &nbsp;&nbsp;<span class="keyword">return</span> a + b;<br>
-                        }<br>
-                        <br>
-                        <span class="keyword">let</span> result = <span class="function">add</span>(<span class="number">15</span>, <span class="number">3</span>);
+                    <div class="output-card-content">
+                        <div class="rules-list">
+                            <div class="rule-item">
+                                <div class="rule-number">1</div>
+                                <div class="rule-content">
+                                    <strong>GLOBAL SCOPE:</strong>
+                                    <ul>
+                                        <li>Variables declared outside any function or block</li>
+                                        <li>Accessible everywhere in your code</li>
+                                        <li>Example: <code>const globalVar = "I'm global";</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="rule-item">
+                                <div class="rule-number">2</div>
+                                <div class="rule-content">
+                                    <strong>FUNCTION SCOPE:</strong>
+                                    <ul>
+                                        <li>Variables declared inside a function</li>
+                                        <li>Accessible only within that function and nested blocks</li>
+                                        <li>Cannot be accessed from outside the function</li>
+                                        <li>Example: <code>function myFunc() { let funcVar = "inside"; }</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="rule-item">
+                                <div class="rule-number">3</div>
+                                <div class="rule-content">
+                                    <strong>BLOCK SCOPE (let/const):</strong>
+                                    <ul>
+                                        <li>Variables declared with let/const inside {} blocks</li>
+                                        <li>Accessible only within that block and nested blocks</li>
+                                        <li>Example: <code>if (true) { const blockVar = "inside"; }</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="key-principle">
+                            <strong>KEY PRINCIPLE:</strong>
+                            <p>Inner scopes can access variables from outer scopes, but outer scopes cannot access
+                                variables from inner scopes. This is called <strong>"lexical scoping"</strong> or
+                                <strong>"scope chain"</strong>.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="concept-box">
-            <strong>💡 Key Takeaways:</strong><br>
-            • Functions are reusable blocks of code that perform specific tasks<br>
-            • Parameters allow functions to accept input values<br>
-            • Return values allow functions to send results back<br>
-            • Functions help avoid code repetition and improve organization<br>
-            • Variables inside functions have local scope (not accessible outside)<br>
-            • Functions can be defined in different ways (declaration, expression, arrow)<br>
-            • Use functions to break down complex problems into smaller, manageable pieces
         </div>
     </div>
 
-    <!-- Modal for function examples -->
+    <!-- Modal for Function Examples -->
     <div id="functionModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeFunctionModal()">&times;</span>
+            <span class="close-modal" onclick="closeModal()">&times;</span>
             <div class="modal-header">
-                <span class="function-icon" id="modalFunctionIcon">⚙️</span>
-                <h2 class="modal-title" id="modalFunctionTitle">Function Type</h2>
+                <div class="function-icon" id="modalIcon">📝</div>
+                <h2 class="modal-title" id="modalTitle">Function Declaration</h2>
             </div>
-            <div class="function-description" id="modalFunctionDescription"></div>
-            <div class="modal-code" id="modalFunctionCode"></div>
-            <div class="function-description" id="modalFunctionDetails"></div>
+            <div class="function-description" id="modalDescription">
+                Function declarations are the traditional way to define functions in JavaScript. They are hoisted,
+                meaning you can call them before they are defined in your code.
+            </div>
+            <div class="modal-code" id="modalCode">
+                // Function Declaration<br>
+                function greet(name) {<br>
+                &nbsp;&nbsp;return "Hello, " + name + "!";<br>
+                }<br>
+                <br>
+                // Call the function<br>
+                console.log(greet("Alice")); // "Hello, Alice!"
+            </div>
+            <div class="tip-box">
+                <strong>Key Points:</strong>
+                <ul>
+                    <li>Function declarations are hoisted</li>
+                    <li>They can be called before they are defined</li>
+                    <li>They have their own <code>this</code> context</li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <script>
-        // Function examples modal
-        function showFunctionExample(type) {
-            const modal = document.getElementById('functionModal');
-            const title = document.getElementById('modalFunctionTitle');
-            const description = document.getElementById('modalFunctionDescription');
-            const code = document.getElementById('modalFunctionCode');
-            const details = document.getElementById('modalFunctionDetails');
-            const icon = document.getElementById('modalFunctionIcon');
-            
-            const functionData = {
-                'declaration': {
-                    icon: '📝',
-                    title: 'Function Declaration',
-                    description: 'The traditional way to define a function',
-                    code: 'function greet(name) {<br>&nbsp;&nbsp;return "Hello, " + name + "!";<br>}<br><br>// Call the function<br>let message = greet("Alice");<br>console.log(message); // "Hello, Alice!"',
-                    details: 'Function declarations are hoisted, meaning they can be called before they are defined in the code. This is the most common way to define functions.'
-                },
-                'expression': {
-                    icon: '💡',
-                    title: 'Function Expression',
-                    description: 'Assigning a function to a variable',
-                    code: 'const greet = function(name) {<br>&nbsp;&nbsp;return "Hello, " + name + "!";<br>};<br><br>// Call the function<br>let message = greet("Bob");<br>console.log(message); // "Hello, Bob!"',
-                    details: 'Function expressions are not hoisted, so they must be defined before they are called. They are useful when you need to assign different functions to the same variable.'
-                },
-                'arrow': {
-                    icon: '🏹',
-                    title: 'Arrow Function',
-                    description: 'Modern concise syntax for functions',
-                    code: 'const greet = (name) => {<br>&nbsp;&nbsp;return "Hello, " + name + "!";<br>};<br><br>// Even shorter for simple functions<br>const add = (a, b) => a + b;<br><br>// Call the functions<br>console.log(greet("Charlie")); // "Hello, Charlie!"<br>console.log(add(5, 3)); // 8',
-                    details: 'Arrow functions have a shorter syntax and do not have their own "this" context. They are especially useful for short, simple functions and callbacks.'
-                },
-                'callback': {
-                    icon: '🔄',
-                    title: 'Callback Function',
-                    description: 'A function passed as an argument to another function',
-                    code: '// Define a function that takes a callback<br>function processUserInput(callback) {<br>&nbsp;&nbsp;let name = prompt("Please enter your name");<br>&nbsp;&nbsp;callback(name);<br>}<br><br>// Use the function with a callback<br>processUserInput(function(name) {<br>&nbsp;&nbsp;console.log("Hello, " + name + "!");<br>});',
-                    details: 'Callback functions are commonly used in asynchronous operations, event handlers, and higher-order functions. They allow you to customize what happens after an operation completes.'
-                }
-            };
-            
-            const data = functionData[type];
-            icon.textContent = data.icon;
-            title.textContent = data.title;
-            description.textContent = data.description;
-            code.innerHTML = data.code;
-            details.textContent = data.details;
-            
-            modal.style.display = 'flex';
-        }
-        
-        function closeFunctionModal() {
-            document.getElementById('functionModal').style.display = 'none';
-        }
-
-        // Close modal when clicking outside the content
-        window.onclick = function(event) {
-            const modal = document.getElementById('functionModal');
-            if (event.target === modal) {
-                closeFunctionModal();
-            }
-        }
-
-        // Basic function creation
+        // Function creation and calling
         function createFunction() {
-            const name = document.getElementById('funcName').value || 'greet';
-            document.getElementById('functionCode').innerHTML = `
-                <span class="keyword">function</span> <span class="function">${name}</span>() {<br>
+            const funcName = document.getElementById('funcName').value || 'greet';
+            document.getElementById('functionCode').innerHTML =
+                `<span class="keyword">function</span> <span class="function">${funcName}</span>() {<br>
                 &nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Hello, World!"</span>;<br>
                 }<br>
                 <br>
                 <span class="comment">// Call the function</span><br>
-                <span class="function">${name}</span>();
-            `;
+                <span class="function">${funcName}</span>();`;
+
+            document.querySelector('#functionDisplay .function-name').textContent = funcName;
         }
 
         function callFunction() {
-            const name = document.getElementById('funcName').value || 'greet';
-            document.getElementById('functionDisplay').innerHTML = `
-                <div class="function-name">${name}</div>
-                <div class="function-result">Hello, World!</div>
-            `;
+            const funcName = document.getElementById('funcName').value || 'greet';
+            document.querySelector('#functionDisplay .function-result').textContent = "Hello, World!";
+            document.querySelector('#functionDisplay .function-result').style.animation = 'pulse 2s ease-in-out';
+            setTimeout(() => {
+                document.querySelector('#functionDisplay .function-result').style.animation = '';
+            }, 2000);
         }
 
-        // Function with parameters
+        // Parameters and arguments
         function calculateWithParams() {
-            const num1 = parseInt(document.getElementById('param1').value) || 0;
-            const num2 = parseInt(document.getElementById('param2').value) || 0;
-            const result = num1 + num2;
-            
-            document.getElementById('paramResult').innerHTML = `
-                <div class="function-name">add</div>
-                <div class="function-result">${result}</div>
-            `;
-            
-            document.getElementById('paramCode').innerHTML = `
-                <span class="keyword">function</span> <span class="function">add</span>(a, b) {<br>
+            const param1 = parseInt(document.getElementById('param1').value) || 0;
+            const param2 = parseInt(document.getElementById('param2').value) || 0;
+            const result = param1 + param2;
+
+            document.querySelector('#paramResult .function-result').textContent = result;
+
+            document.getElementById('paramCode').innerHTML =
+                `<span class="keyword">function</span> <span class="function">add</span>(a, b) {<br>
                 &nbsp;&nbsp;<span class="keyword">return</span> a + b;<br>
                 }<br>
                 <br>
                 <span class="comment">// Call with arguments</span><br>
-                <span class="keyword">let</span> result = <span class="function">add</span>(<span class="number">${num1}</span>, <span class="number">${num2}</span>);
-            `;
+                <span class="keyword">let</span> result = <span class="function">add</span>(<span class="number">${param1}</span>, <span class="number">${param2}</span>);`;
         }
 
-        // Function with return value
+        // Return values
         function checkNumber() {
-            const num = parseInt(document.getElementById('checkNumber').value) || 0;
-            const result = num % 2 === 0 ? "even" : "odd";
-            
-            document.getElementById('checkResult').innerHTML = `
-                <div class="function-name">isEven</div>
-                <div class="function-result">${num} is ${result}</div>
-            `;
-            
-            document.getElementById('checkCode').innerHTML = `
-                <span class="keyword">function</span> <span class="function">isEven</span>(num) {<br>
+            const number = parseInt(document.getElementById('checkNumber').value) || 0;
+            const isEven = number % 2 === 0;
+            const resultText = isEven ? `${number} is even` : `${number} is odd`;
+
+            document.querySelector('#checkResult .function-result').textContent = resultText;
+
+            document.getElementById('checkCode').innerHTML =
+                `<span class="keyword">function</span> <span class="function">isEven</span>(num) {<br>
                 &nbsp;&nbsp;<span class="keyword">if</span> (num % <span class="number">2</span> === <span class="number">0</span>) {<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"even"</span>;<br>
                 &nbsp;&nbsp;} <span class="keyword">else</span> {<br>
@@ -873,74 +1527,212 @@
                 &nbsp;&nbsp;}<br>
                 }<br>
                 <br>
-                <span class="keyword">let</span> result = <span class="function">isEven</span>(<span class="number">${num}</span>);
-            `;
+                <span class="keyword">let</span> result = <span class="function">isEven</span>(<span class="number">${number}</span>);`;
         }
 
-        // Scope demonstration
-        function demonstrateScope() {
-            const output = document.getElementById('scopeOutput');
-            output.innerHTML = `
-                <strong>Global variable:</strong> I'm global<br>
-                <strong>Inside function:</strong> I'm local<br>
-                <strong>Global variable after function:</strong> I'm global<br>
-                <strong style="color: red;">Trying to access local variable outside function: ERROR!</strong>
-            `;
-        }
+        // Function examples modal
+        function showFunctionExample(type) {
+            const modal = document.getElementById('functionModal');
+            const title = document.getElementById('modalTitle');
+            const description = document.getElementById('modalDescription');
+            const code = document.getElementById('modalCode');
+            const icon = document.getElementById('modalIcon');
 
-        // Calculator functions
-        function calculate(operation) {
-            const num1 = parseFloat(document.getElementById('calcNum1').value) || 0;
-            const num2 = parseFloat(document.getElementById('calcNum2').value) || 0;
-            let result;
-            let operator;
-            let funcName;
+            switch (type) {
+                case 'declaration':
+                    title.textContent = 'Function Declaration';
+                    icon.textContent = '📝';
+                    description.innerHTML = 'Function declarations are the traditional way to define functions in JavaScript. They are <strong>hoisted</strong>, meaning you can call them before they are defined in your code.';
+                    code.innerHTML =
+                        `<span class="comment">// Function Declaration</span><br>
+                        <span class="keyword">function</span> <span class="function">greet</span>(name) {<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Hello, "</span> + name + <span class="string">"!"</span>;<br>
+                        }<br>
+                        <br>
+                        <span class="comment">// Call the function</span><br>
+                        <span class="function">console</span>.<span class="function">log</span>(<span class="function">greet</span>(<span class="string">"Alice"</span>)); <span class="comment">// "Hello, Alice!"</span>`;
+                    break;
 
-            switch(operation) {
-                case 'add':
-                    result = num1 + num2;
-                    operator = '+';
-                    funcName = 'add';
+                case 'expression':
+                    title.textContent = 'Function Expression';
+                    icon.textContent = '💡';
+                    description.innerHTML = 'Function expressions define a function as part of a larger expression, typically by assigning it to a variable. They are <strong>not hoisted</strong>, so you must define them before calling.';
+                    code.innerHTML =
+                        `<span class="comment">// Function Expression</span><br>
+                        <span class="keyword">const</span> greet = <span class="keyword">function</span>(name) {<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Hello, "</span> + name + <span class="string">"!"</span>;<br>
+                        };<br>
+                        <br>
+                        <span class="comment">// Call the function</span><br>
+                        <span class="function">console</span>.<span class="function">log</span>(greet(<span class="string">"Alice"</span>)); <span class="comment">// "Hello, Alice!"</span>`;
                     break;
-                case 'subtract':
-                    result = num1 - num2;
-                    operator = '-';
-                    funcName = 'subtract';
+
+                case 'arrow':
+                    title.textContent = 'Arrow Function';
+                    icon.textContent = '🏹';
+                    description.innerHTML = 'Arrow functions provide a shorter syntax for writing functions and do not have their own <code>this</code> context. They are always function expressions.';
+                    code.innerHTML =
+                        `<span class="comment">// Arrow Function</span><br>
+                        <span class="keyword">const</span> greet = (name) => {<br>
+                        &nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Hello, "</span> + name + <span class="string">"!"</span>;<br>
+                        };<br>
+                        <br>
+                        <span class="comment">// Shorter version (implicit return)</span><br>
+                        <span class="keyword">const</span> greetShort = name => <span class="string">"Hello, "</span> + name + <span class="string">"!"</span>;<br>
+                        <br>
+                        <span class="comment">// Call the function</span><br>
+                        <span class="function">console</span>.<span class="function">log</span>(greet(<span class="string">"Alice"</span>)); <span class="comment">// "Hello, Alice!"</span>`;
                     break;
-                case 'multiply':
-                    result = num1 * num2;
-                    operator = '*';
-                    funcName = 'multiply';
-                    break;
-                case 'divide':
-                    result = num2 !== 0 ? num1 / num2 : 'Error: Division by zero';
-                    operator = '/';
-                    funcName = 'divide';
+
+                case 'callback':
+                    title.textContent = 'Callback Function';
+                    icon.textContent = '🔄';
+                    description.innerHTML = 'Callback functions are functions passed as arguments to other functions. They are commonly used in asynchronous operations and event handling.';
+                    code.innerHTML =
+                        `<span class="comment">// Callback Function Example</span><br>
+                        <span class="keyword">function</span> <span class="function">processUserInput</span>(callback) {<br>
+                        &nbsp;&nbsp;<span class="keyword">let</span> name = <span class="function">prompt</span>(<span class="string">"Please enter your name."</span>);<br>
+                        &nbsp;&nbsp;<span class="function">callback</span>(name);<br>
+                        }<br>
+                        <br>
+                        <span class="comment">// Using the callback function</span><br>
+                        <span class="function">processUserInput</span>(<span class="keyword">function</span>(name) {<br>
+                        &nbsp;&nbsp;<span class="function">alert</span>(<span class="string">"Hello, "</span> + name);<br>
+                        });`;
                     break;
             }
 
-            document.getElementById('calcResult').innerHTML = `
-                <div class="function-name">${funcName}</div>
-                <div class="function-result">${typeof result === 'number' ? result.toFixed(2) : result}</div>
-            `;
-            
-            document.getElementById('calcCode').innerHTML = `
-                <span class="keyword">function</span> <span class="function">${funcName}</span>(a, b) {<br>
-                &nbsp;&nbsp;<span class="keyword">return</span> a ${operator} b;<br>
-                }<br>
-                <br>
-                <span class="keyword">let</span> result = <span class="function">${funcName}</span>(<span class="number">${num1}</span>, <span class="number">${num2}</span>);
-            `;
+            modal.style.display = 'flex';
         }
 
-        // Initialize with default values
-        window.onload = function() {
+        function closeModal() {
+            document.getElementById('functionModal').style.display = 'none';
+        }
+
+        // Scope Visualization
+        function runScopeExample() {
+            // Clear previous content
+            document.getElementById('globalScopeContent').innerHTML = '';
+            document.getElementById('functionScopeContent').innerHTML = '';
+            document.getElementById('blockScopeContent').innerHTML = '';
+
+            // Add global variables
+            const globalVars = [
+                { name: 'globalVar', value: '"I am global"', accessible: true },
+                { name: 'PI', value: '3.14159', accessible: true },
+                { name: 'appName', value: '"MyApp"', accessible: true }
+            ];
+
+            globalVars.forEach(variable => {
+                const element = document.createElement('div');
+                element.className = 'variable-item';
+                element.innerHTML = `
+                    <span class="variable-name">${variable.name}</span>
+                    <span class="variable-value">${variable.value}</span>
+                `;
+                document.getElementById('globalScopeContent').appendChild(element);
+            });
+
+            // Add function variables
+            setTimeout(() => {
+                const functionVars = [
+                    { name: 'functionVar', value: '"I am in function"', accessible: true },
+                    { name: 'temp', value: '42', accessible: true },
+                    { name: 'result', value: '"computed"', accessible: true }
+                ];
+
+                functionVars.forEach(variable => {
+                    const element = document.createElement('div');
+                    element.className = 'variable-item';
+                    element.innerHTML = `
+                        <span class="variable-name">${variable.name}</span>
+                        <span class="variable-value">${variable.value}</span>
+                    `;
+                    document.getElementById('functionScopeContent').appendChild(element);
+                });
+
+                // Add block variables
+                setTimeout(() => {
+                    const blockVars = [
+                        { name: 'blockVar', value: '"I am in block"', accessible: true },
+                        { name: 'i', value: '0', accessible: true },
+                        { name: 'item', value: '"current"', accessible: true }
+                    ];
+
+                    blockVars.forEach(variable => {
+                        const element = document.createElement('div');
+                        element.className = 'variable-item';
+                        element.innerHTML = `
+                            <span class="variable-name">${variable.name}</span>
+                            <span class="variable-value">${variable.value}</span>
+                        `;
+                        document.getElementById('blockScopeContent').appendChild(element);
+                    });
+                }, 500);
+            }, 500);
+        }
+
+        function resetScopeExample() {
+            document.getElementById('globalScopeContent').innerHTML = '';
+            document.getElementById('functionScopeContent').innerHTML = '';
+            document.getElementById('blockScopeContent').innerHTML = '';
+
+            const message = document.createElement('div');
+            message.innerHTML = '<p>Click "Run Scope Example" to see how scope works</p>';
+            message.style.textAlign = 'center';
+            message.style.padding = '20px';
+            message.style.color = '#666';
+
+            document.getElementById('globalScopeContent').appendChild(message.cloneNode(true));
+            document.getElementById('functionScopeContent').appendChild(message.cloneNode(true));
+            document.getElementById('blockScopeContent').appendChild(message.cloneNode(true));
+        }
+
+
+        // Code Example Functions
+        function runCodeExample() {
+            // Hide other cards
+            closeOutputCard('scopeRulesCard');
+
+            // Show code output card
+            const outputCard = document.getElementById('codeOutputCard');
+            outputCard.classList.remove('hidden');
+
+            // Scroll to the card
+            outputCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function explainScopeRules() {
+            // Hide other cards
+            closeOutputCard('codeOutputCard');
+
+            // Show scope rules card
+            const rulesCard = document.getElementById('scopeRulesCard');
+            rulesCard.classList.remove('hidden');
+
+            // Scroll to the card
+            rulesCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function closeOutputCard(cardId) {
+            const card = document.getElementById(cardId);
+            card.classList.add('hidden');
+        }
+
+        // Initialize the page
+        window.onload = function () {
             createFunction();
-            callFunction();
-            calculateWithParams();
-            checkNumber();
-            calculate('add');
+            resetScopeExample();
+
+            // Close modal when clicking outside
+            window.onclick = function (event) {
+                const modal = document.getElementById('functionModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            }
         };
     </script>
 </body>
+
 </html>
